@@ -91,7 +91,20 @@ body {
 }
 
 /* HERO SECTION */
+.hero-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.hero-photo {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid rgba(56, 189, 248, 0.7);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
 .hero {
   min-height: 92vh;
   padding: 110px 24px 90px;
