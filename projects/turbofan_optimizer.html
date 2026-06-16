@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Turbofan Engine Performance Optimizer | Noah Crabb</title>
+
+  <!-- Use ../style.css if this file is inside the projects folder -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo">Noah Crabb</a>
+
+      <nav class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PROJECT HERO -->
+  <section class="section project-detail">
+    <div class="section-heading">
+      <p class="eyebrow">AI + Propulsion Project</p>
+      <h2>Machine Learning–Assisted Turbofan Engine Performance Optimizer</h2>
+    </div>
+
+    <div class="card project-overview-card">
+      <h3>Project Overview</h3>
+      <p>
+        This project is a MATLAB-based turbofan engine performance optimizer that combines
+        thermodynamic engine cycle analysis with machine learning surrogate modeling. The tool allows
+        users to run baseline turbofan cycle calculations, train AI models, optimize design variables,
+        and compare key engine performance outputs.
+      </p>
+
+      <div class="project-stats-grid">
+        <div class="stat-box">
+          <span>8,000</span>
+          <p>Simulated engine-cycle samples</p>
+        </div>
+
+        <div class="stat-box">
+          <span>MATLAB</span>
+          <p>GUI, optimization, and modeling</p>
+        </div>
+
+        <div class="stat-box">
+          <span>AI/ML</span>
+          <p>Surrogate model prediction</p>
+        </div>
+
+        <div class="stat-box">
+          <span>5+</span>
+          <p>Performance outputs analyzed</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOT / GUI SECTION -->
+    <div class="card">
+      <h3>MATLAB GUI</h3>
+      <p>
+        The GUI was designed to make turbofan performance analysis more interactive. Users can modify
+        design inputs, run baseline calculations, train the machine learning model, and evaluate optimized
+        cycle conditions from one interface.
+      </p>
+
+      <div class="project-image-grid">
+        <figure>
+          <img src="../images/turbofan-gui.png" alt="MATLAB turbofan optimizer GUI">
+          <figcaption>Main MATLAB GUI for turbofan cycle inputs, AI model training, and optimization.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../images/turbofan-results.png" alt="Turbofan optimizer results">
+          <figcaption>Performance outputs including thrust, fuel consumption, and engine efficiency trends.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- VIDEO DEMO SECTION -->
+    <div class="card">
+      <h3>Demo Video</h3>
+      <p>
+        Since MATLAB GUIs cannot run directly inside a static GitHub Pages website, this section can show
+        a recorded walkthrough of the app instead.
+      </p>
+
+      <!-- Option 1: If you upload an MP4 file -->
+      <video class="project-video" controls>
+        <source src="../videos/turbofan-demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Option 2: If you use YouTube later, replace the video above with this:
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          title="Turbofan Optimizer Demo"
+          allowfullscreen>
+        </iframe>
+      </div>
+      -->
+    </div>
+
+    <!-- FEATURES -->
+    <div class="card">
+      <h3>Key Features</h3>
+
+      <ul>
+        <li>Generated 8,000 simulated turbofan engine-cycle samples for machine learning model training.</li>
+        <li>Built an interactive MATLAB GUI for baseline cycle calculations, AI training, and optimization.</li>
+        <li>Predicted thrust, fuel consumption, thermal efficiency, propulsive efficiency, and overall efficiency trends.</li>
+        <li>Implemented sensitivity analysis to identify which inputs most strongly influence engine performance.</li>
+        <li>Created a design-space exploration workflow to compare baseline and optimized cycle behavior.</li>
+      </ul>
+    </div>
+
+    <!-- TECHNICAL DETAILS -->
+    <div class="card">
+      <h3>Technical Approach</h3>
+
+      <p>
+        The project uses thermodynamic turbofan cycle relationships to generate training data across a range
+        of engine design variables. A machine learning surrogate model is then trained to approximate engine
+        performance outputs and support faster design-space exploration.
+      </p>
+
+      <p>
+        The optimizer uses the trained surrogate model to search for improved combinations of design variables.
+        Sensitivity analysis is used to evaluate which inputs have the greatest effect on the outputs.
+      </p>
+
+      <div class="tag-list">
+        <span>MATLAB</span>
+        <span>Machine Learning</span>
+        <span>Surrogate Modeling</span>
+        <span>Optimization</span>
+        <span>Sensitivity Analysis</span>
+        <span>Turbofan Cycle Analysis</span>
+        <span>GUI Design</span>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="card">
+      <h3>Results and Takeaways</h3>
+
+      <p>
+        This project helped me connect propulsion theory, machine learning, and software tool development.
+        I gained experience building a usable engineering interface, generating simulation data, training a
+        predictive model, and using optimization to evaluate turbofan design tradeoffs.
+      </p>
+
+      <div class="project-image-grid">
+        <figure>
+          <img src="../images/turbofan-sensitivity.png" alt="Sensitivity analysis results">
+          <figcaption>Sensitivity analysis showing which variables most affected engine performance.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../images/turbofan-optimization.png" alt="Optimization results">
+          <figcaption>Optimization results comparing baseline and improved design variable combinations.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="card">
+      <h3>Project Files</h3>
+      <p>
+        The full MATLAB code and supporting files can be linked here once uploaded to the repository.
+      </p>
+
+      <div class="project-buttons">
+        <a href="../files/turbofan_optimizer.m" class="btn primary-btn" target="_blank">View MATLAB Code</a>
+        <a href="../index.html#projects" class="btn secondary-btn">← Back to Projects</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 Noah Crabb. Built with HTML, CSS, and GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
