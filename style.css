@@ -142,6 +142,55 @@ body {
   margin-bottom: 18px;
 }
 
+.hero {
+  min-height: 92vh;
+  padding: 110px 24px 90px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.28), transparent 35%),
+    radial-gradient(circle at 80% 15%, rgba(99, 102, 241, 0.28), transparent 35%),
+    linear-gradient(135deg, #07111f 0%, #0d1b2f 50%, #111827 100%);
+  color: var(--text-light);
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+.hero-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid rgba(56, 189, 248, 0.7);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.hero-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 34px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(18px);
+  margin: 0;
+}
+
 .hero h1 {
   font-size: clamp(3rem, 7vw, 5.8rem);
   line-height: 0.95;
