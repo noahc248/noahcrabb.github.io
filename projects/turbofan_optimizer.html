@@ -3,187 +3,680 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Turbofan Engine Performance Optimizer | Noah Crabb</title>
-
-  <!-- Use ../style.css if this file is inside the projects folder -->
+  <title>Turbofan Optimizer | Noah Crabb</title>
   <link rel="stylesheet" href="../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---- PROJECT PAGE ADDITIONS ---- */
+ 
+    /* Dark hero for project pages */
+    .proj-hero {
+      background: var(--dark);
+      padding: 160px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 20% 50%, black 20%, transparent 70%);
+    }
+    .proj-hero-orb {
+      position: absolute;
+      width: 500px; height: 500px;
+      top: -150px; right: -100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.08), transparent 65%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .proj-hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+    .proj-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .proj-back:hover { color: var(--orange); }
+    .proj-back-arrow { font-size: 0.9rem; }
+ 
+    .proj-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .proj-hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+ 
+    .proj-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      letter-spacing: -0.045em;
+      line-height: 1.0;
+      color: var(--white);
+      max-width: 820px;
+      margin-bottom: 24px;
+    }
+    .proj-hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .proj-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .proj-meta-pill {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 7px;
+      letter-spacing: 0.01em;
+    }
+    .pill-tool {
+      background: var(--orange-gl);
+      border: 1px solid rgba(249,115,22,0.25);
+      color: var(--orange);
+    }
+    .pill-type {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--off-white);
+    }
+ 
+    /* Stats bar */
+    .proj-stats-bar {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-stats-bar-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide-x: 1px solid var(--border);
+    }
+    .proj-stat {
+      padding: 28px 32px;
+      border-right: 1px solid var(--border);
+    }
+    .proj-stat:last-child { border-right: none; }
+    .proj-stat-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.04em;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .proj-stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+ 
+    /* Content sections */
+    .proj-content {
+      padding: 80px 0 100px;
+    }
+    .proj-section {
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .proj-section.revealed { opacity:1; transform:translateY(0); }
+ 
+    .proj-section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .proj-section-label::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 40px;
+      background: var(--orange);
+      opacity: 0.45;
+    }
+    .proj-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: -0.035em;
+      color: var(--text-dark);
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+    .proj-section p {
+      color: #4a5568;
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      max-width: 760px;
+    }
+    .proj-section p:last-of-type { margin-bottom: 0; }
+ 
+    /* Feature list */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 8px;
+    }
+    .feature-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-top: 1px solid var(--light-border);
+      color: #374151;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .feature-list li:last-child { border-bottom: 1px solid var(--light-border); }
+    .feature-list li::before {
+      content: attr(data-n);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--orange);
+      opacity: 0.7;
+      padding-top: 3px;
+    }
+ 
+    /* Image grid */
+    .proj-img-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .proj-img-grid.single { grid-template-columns: 1fr; }
+    .proj-img-fig {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .proj-img-fig img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .proj-img-fig figcaption {
+      padding: 14px 18px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+ 
+    /* Placeholder (when images not yet uploaded) */
+    .img-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--surface);
+      color: var(--muted);
+    }
+    .img-placeholder-icon {
+      font-size: 1.8rem;
+      opacity: 0.4;
+    }
+    .img-placeholder-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+ 
+    /* Video embed */
+    .proj-video-wrap {
+      margin-top: 24px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .proj-video-embed {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+    }
+    .proj-video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .proj-video-native {
+      width: 100%;
+      display: block;
+    }
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+    }
+    .video-placeholder-icon { font-size: 2.2rem; opacity: 0.35; }
+    .video-placeholder-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+ 
+    /* Tag row */
+    .proj-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .proj-tag-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--orange);
+      background: var(--orange-gl);
+      border: 1px solid rgba(249,115,22,0.2);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+ 
+    /* Technical approach — two col layout */
+    .proj-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .proj-two-col-block {
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .proj-two-col-block h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: -0.01em;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .proj-two-col-block p {
+      font-size: 0.88rem;
+      color: #4a5568;
+      line-height: 1.7;
+      margin-bottom: 0;
+      max-width: none;
+    }
+ 
+    /* CTA footer */
+    .proj-cta {
+      background: var(--dark);
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+    .proj-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .proj-cta-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.04em;
+      color: var(--white);
+    }
+    .proj-cta-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .proj-cta-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+ 
+    /* Responsive */
+    @media (max-width: 780px) {
+      .proj-stats-bar-inner { grid-template-columns: repeat(2,1fr); }
+      .proj-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .proj-stat:nth-child(2n) { border-right: none; }
+      .proj-img-grid { grid-template-columns: 1fr; }
+      .proj-two-col { grid-template-columns: 1fr; }
+      .proj-cta-inner { flex-direction: column; align-items: flex-start; }
+      .proj-hero { padding: 130px 0 60px; }
+    }
+    @media (max-width: 540px) {
+      .proj-stats-bar-inner { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
+ 
 <body>
-
+ 
   <!-- NAVBAR -->
-  <header class="navbar">
+  <header class="navbar scrolled" id="navbar">
     <div class="nav-container">
-      <a href="../index.html" class="logo">Noah Crabb</a>
-
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">NC</span>
+        <span class="logo-text">Noah Crabb</span>
+      </a>
       <nav class="nav-links">
         <a href="../index.html#about">About</a>
         <a href="../index.html#projects">Projects</a>
         <a href="../index.html#skills">Skills</a>
         <a href="../index.html#contact">Contact</a>
       </nav>
+      <a href="../Noah_Crabb_Resume.pdf" class="nav-cta" target="_blank">Resume ↗</a>
     </div>
   </header>
-
+ 
   <!-- PROJECT HERO -->
-  <section class="section project-detail">
-    <div class="section-heading">
-      <p class="eyebrow">AI + Propulsion Project</p>
-      <h2>Machine Learning–Assisted Turbofan Engine Performance Optimizer</h2>
-    </div>
-
-    <div class="card project-overview-card">
-      <h3>Project Overview</h3>
-      <p>
-        This project is a MATLAB-based turbofan engine performance optimizer that combines
-        thermodynamic engine cycle analysis with machine learning surrogate modeling. The tool allows
-        users to run baseline turbofan cycle calculations, train AI models, optimize design variables,
-        and compare key engine performance outputs.
+  <section class="proj-hero">
+    <div class="proj-hero-grid"></div>
+    <div class="proj-hero-orb"></div>
+    <div class="container proj-hero-inner">
+ 
+      <a href="../index.html#projects" class="proj-back">
+        <span class="proj-back-arrow">←</span> All Projects
+      </a>
+ 
+      <div class="proj-hero-tag">Machine Learning · Propulsion · Independent Project</div>
+ 
+      <h1>ML-Assisted Turbofan Engine Performance Optimizer</h1>
+ 
+      <p class="proj-hero-sub">
+        A MATLAB-based tool that pairs thermodynamic turbofan cycle analysis with machine learning
+        surrogate modeling — enabling faster design-space exploration and AI-assisted propulsion trade studies.
       </p>
-
-      <div class="project-stats-grid">
-        <div class="stat-box">
-          <span>8,000</span>
-          <p>Simulated engine-cycle samples</p>
-        </div>
-
-        <div class="stat-box">
-          <span>MATLAB</span>
-          <p>GUI, optimization, and modeling</p>
-        </div>
-
-        <div class="stat-box">
-          <span>AI/ML</span>
-          <p>Surrogate model prediction</p>
-        </div>
-
-        <div class="stat-box">
-          <span>5+</span>
-          <p>Performance outputs analyzed</p>
-        </div>
+ 
+      <div class="proj-meta-row">
+        <span class="proj-meta-pill pill-tool">MATLAB</span>
+        <span class="proj-meta-pill pill-tool">Surrogate Modeling</span>
+        <span class="proj-meta-pill pill-tool">Optimization</span>
+        <span class="proj-meta-pill pill-tool">GUI Design</span>
+        <span class="proj-meta-pill pill-type">Independent · June 2026</span>
       </div>
+ 
     </div>
-
-    <!-- SCREENSHOT / GUI SECTION -->
-    <div class="card">
-      <h3>MATLAB GUI</h3>
-      <p>
-        The GUI was designed to make turbofan performance analysis more interactive. Users can modify
-        design inputs, run baseline calculations, train the machine learning model, and evaluate optimized
-        cycle conditions from one interface.
-      </p>
-
-      <div class="project-image-grid">
-        <figure>
-          <img src="../turbofan-gui.png" alt="MATLAB turbofan optimizer GUI">
-          <figcaption>Main MATLAB GUI for turbofan cycle inputs, AI model training, and optimization.</figcaption>
-        </figure>
-
-        <figure>
-          <img src="../turbofan-results.png" alt="Turbofan optimizer results">
-          <figcaption>Performance outputs including thrust, fuel consumption, and engine efficiency trends.</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <!-- VIDEO DEMO SECTION -->
-    <div class="card">
-      <h3>Demo Video</h3>
-      <p>
-        
-      </p>
-
-      <!-- Option 1: If you upload an MP4 file -->
-      <video class="project-video" controls>
-        <source src="../videos/turbofan-demo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-
-      <!-- Option 2: If you use YouTube later, replace the video above with this:
-      <div class="video-embed">
-        <iframe
-          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-          title="Turbofan Optimizer Demo"
-          allowfullscreen>
-        </iframe>
-      </div>
-      -->
-    </div>
-
-    <!-- FEATURES -->
-    <div class="card">
-      <h3>Key Features</h3>
-
-      <ul>
-        <li>Generated 8,000 simulated turbofan engine-cycle samples for machine learning model training.</li>
-        <li>Built an interactive MATLAB GUI for baseline cycle calculations, AI training, and optimization.</li>
-        <li>Predicted thrust, fuel consumption, thermal efficiency, propulsive efficiency, and overall efficiency trends.</li>
-        <li>Implemented sensitivity analysis to identify which inputs most strongly influence engine performance.</li>
-        <li>Created a design-space exploration workflow to compare baseline and optimized cycle behavior.</li>
-      </ul>
-    </div>
-
-    <!-- TECHNICAL DETAILS -->
-    <div class="card">
-      <h3>Technical Approach</h3>
-
-      <p>
-        The project uses thermodynamic turbofan cycle relationships to generate training data across a range
-        of engine design variables. A machine learning surrogate model is then trained to approximate engine
-        performance outputs and support faster design-space exploration.
-      </p>
-
-      <p>
-        The optimizer uses the trained surrogate model to search for improved combinations of design variables.
-        Sensitivity analysis is used to evaluate which inputs have the greatest effect on the outputs.
-      </p>
-
-      <div class="tag-list">
-        <span>MATLAB</span>
-        <span>Machine Learning</span>
-        <span>Surrogate Modeling</span>
-        <span>Optimization</span>
-        <span>Sensitivity Analysis</span>
-        <span>Turbofan Cycle Analysis</span>
-        <span>GUI Design</span>
-      </div>
-    </div>
-
-    <!-- RESULTS -->
-    <div class="card">
-      <h3>Results and Takeaways</h3>
-
-      <p>
-        This project helped me connect propulsion theory, machine learning, and software tool development.
-        I gained experience building a usable engineering interface, generating simulation data, training a
-        predictive model, and using optimization to evaluate turbofan design tradeoffs.
-      </p>
-
-      <div class="project-image-grid">
-        <figure>
-          <img src="../turbofan-sensitivity.png" alt="Sensitivity analysis results">
-          <figcaption>Sensitivity analysis showing which variables most affected engine performance.</figcaption>
-        </figure>
-
-    <!-- LINKS -->
-    <div class="card">
-      <h3>Project Files</h3>
-      <p>
-        The full MATLAB code and supporting files can be linked here once uploaded to the repository.
-      </p>
-
-      <div class="project-buttons">
-        <a href="../files/turbofan_optimizer.m" class="btn primary-btn" target="_blank">View MATLAB Code</a>
-        <a href="../index.html#projects" class="btn secondary-btn">← Back to Projects</a>
-      </div>
-    </div>
-
   </section>
-
+ 
+  <!-- STATS BAR -->
+  <div class="proj-stats-bar">
+    <div class="container">
+      <div class="proj-stats-bar-inner">
+        <div class="proj-stat">
+          <div class="proj-stat-val">8,000</div>
+          <div class="proj-stat-label">Simulated engine-cycle samples generated</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">5+</div>
+          <div class="proj-stat-label">Performance outputs predicted and analyzed</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">1</div>
+          <div class="proj-stat-label">Unified GUI for analysis, training, and optimization</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">AI</div>
+          <div class="proj-stat-label">Surrogate model replaces slow cycle calculations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- MAIN CONTENT -->
+  <div class="proj-content">
+    <div class="container">
+ 
+      <!-- Overview -->
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Overview</div>
+        <h2>What this project does</h2>
+        <p>
+          This tool lets you run turbofan engine cycle analysis the fast way — rather than computing every
+          performance point from scratch, a machine learning surrogate model trained on 8,000 simulated samples
+          approximates performance outputs nearly instantly, enabling rapid design-space sweeps that would
+          otherwise take significant computation time.
+        </p>
+        <p>
+          Users interact through a single MATLAB GUI: adjust design variables (bypass ratio, pressure ratio,
+          turbine inlet temperature, etc.), run a baseline cycle, train the AI model, and evaluate optimized
+          conditions — all from one interface with live performance comparisons.
+        </p>
+      </div>
+ 
+      <!-- GUI / Screenshots -->
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Interface</div>
+        <h2>MATLAB GUI</h2>
+        <p>
+          The GUI was designed to make turbofan performance analysis interactive and accessible — no command-line
+          juggling, no separate scripts. Every workflow lives in one place.
+        </p>
+        <div class="proj-img-grid">
+          <figure class="proj-img-fig">
+            <div class="img-placeholder">
+              <div class="img-placeholder-icon">⚙</div>
+              <div class="img-placeholder-text">turbofan-gui.png</div>
+            </div>
+            <!-- Replace above div with: <img src="../turbofan-gui.png" alt="Turbofan optimizer GUI"> -->
+            <figcaption>Main GUI — cycle inputs, AI training, optimization controls</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <div class="img-placeholder">
+              <div class="img-placeholder-icon">📈</div>
+              <div class="img-placeholder-text">turbofan-results.png</div>
+            </div>
+            <!-- Replace above div with: <img src="../turbofan-results.png" alt="Performance output plots"> -->
+            <figcaption>Performance outputs — thrust, TSFC, thermal and propulsive efficiency</figcaption>
+          </figure>
+        </div>
+      </div>
+ 
+      <!-- Demo Video -->
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Demo</div>
+        <h2>Walkthrough video</h2>
+        <p>A full demo of the GUI workflow — baseline run, model training, optimization, and sensitivity output.</p>
+        <div class="proj-video-wrap">
+          <!-- Option A: local MP4 — uncomment when ready -->
+          <!-- <video class="proj-video-native" controls>
+            <source src="../videos/turbofan-demo.mp4" type="video/mp4">
+          </video> -->
+ 
+          <!-- Option B: YouTube embed — replace YOUR_VIDEO_ID -->
+          <!-- <div class="proj-video-embed">
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+              title="Turbofan Optimizer Demo" allowfullscreen></iframe>
+          </div> -->
+ 
+          <!-- Placeholder until video is added -->
+          <div class="video-placeholder">
+            <div class="video-placeholder-icon">▶</div>
+            <div class="video-placeholder-text">Video coming soon — drop MP4 or YouTube ID above</div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Features -->
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Features</div>
+        <h2>Key capabilities</h2>
+        <ul class="feature-list">
+          <li data-n="01">Generated 8,000 simulated turbofan engine-cycle samples across a sweep of design variable combinations to build a comprehensive training dataset.</li>
+          <li data-n="02">Built an interactive MATLAB GUI unifying baseline cycle calculations, AI model training, optimization, and performance visualization in a single tool.</li>
+          <li data-n="03">Predicted thrust, thrust-specific fuel consumption (TSFC), thermal efficiency, propulsive efficiency, and overall efficiency from surrogate model outputs.</li>
+          <li data-n="04">Implemented sensitivity analysis to quantify which input variables (bypass ratio, fan pressure ratio, TIT, etc.) most strongly drive each performance metric.</li>
+          <li data-n="05">Created a design-space comparison workflow to benchmark optimized cycle conditions against a user-defined baseline side by side.</li>
+        </ul>
+      </div>
+ 
+      <!-- Technical approach -->
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Technical Approach</div>
+        <h2>How it works</h2>
+        <p>
+          The workflow has two phases: physics-based data generation, then machine learning acceleration.
+          Thermodynamic cycle relationships produce a ground-truth dataset; the surrogate model learns to
+          replicate those outputs without re-running the full cycle each time.
+        </p>
+ 
+        <div class="proj-two-col">
+          <div class="proj-two-col-block">
+            <h4>Phase 1 — Cycle Data Generation</h4>
+            <p>Turbofan thermodynamic cycle equations (fan, compressor, combustor, turbine, nozzle stages) sweep across a Latin hypercube-style grid of design variables to produce 8,000 labeled performance samples covering the realistic design space.</p>
+          </div>
+          <div class="proj-two-col-block">
+            <h4>Phase 2 — Surrogate Modeling & Optimization</h4>
+            <p>A machine learning surrogate is trained on the generated dataset. Once trained, the surrogate replaces expensive cycle recalculations during optimization sweeps, enabling rapid gradient-free search over the design space and sensitivity ranking of input variables.</p>
+          </div>
+        </div>
+ 
+        <div class="proj-tag-row">
+          <span class="proj-tag-item">MATLAB</span>
+          <span class="proj-tag-item">Thermodynamic Cycle Analysis</span>
+          <span class="proj-tag-item">Machine Learning</span>
+          <span class="proj-tag-item">Surrogate Modeling</span>
+          <span class="proj-tag-item">Optimization</span>
+          <span class="proj-tag-item">Sensitivity Analysis</span>
+          <span class="proj-tag-item">GUI Design</span>
+        </div>
+      </div>
+ 
+      <!-- Results -->
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Results</div>
+        <h2>Takeaways</h2>
+        <p>
+          This project brought together propulsion theory, machine learning, and software engineering in one
+          tool. Building the full pipeline — from generating physics-based training data, to training a
+          predictive model, to wrapping it in a usable GUI — gave me hands-on experience with how AI
+          accelerates traditional engineering analysis.
+        </p>
+        <p>
+          The sensitivity analysis output was particularly useful: seeing quantitatively which design variables
+          drive efficiency vs. thrust helps frame propulsion trade studies in a way that raw cycle calculations
+          alone don't surface easily.
+        </p>
+        <div class="proj-img-grid single">
+          <figure class="proj-img-fig">
+            <div class="img-placeholder">
+              <div class="img-placeholder-icon">📊</div>
+              <div class="img-placeholder-text">turbofan-sensitivity.png</div>
+            </div>
+            <!-- Replace with: <img src="../turbofan-sensitivity.png" alt="Sensitivity analysis results"> -->
+            <figcaption>Sensitivity analysis — ranked influence of each design variable on performance outputs</figcaption>
+          </figure>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- CTA FOOTER -->
+  <div class="proj-cta">
+    <div class="container">
+      <div class="proj-cta-inner">
+        <div>
+          <div class="proj-cta-text">View the code or get in touch.</div>
+          <div class="proj-cta-sub">Full MATLAB source available once uploaded to the repository.</div>
+        </div>
+        <div class="proj-cta-btns">
+          <a href="../files/turbofan_optimizer.m" class="btn-primary" target="_blank">View MATLAB Code ↗</a>
+          <a href="../index.html#projects" class="btn-ghost">← All Projects</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2026 Noah Crabb. Built with HTML, CSS, and GitHub Pages.</p>
+    <div class="container footer-inner">
+      <span class="footer-name">Noah Crabb</span>
+      <span class="footer-copy">© 2026 · Aerospace &amp; Ocean Engineering · Virginia Tech · Built with HTML, CSS, GitHub Pages</span>
+    </div>
   </footer>
-
+ 
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const delay = e.target.dataset.delay || 0;
+          setTimeout(() => e.target.classList.add('revealed'), Number(delay));
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+ 
+    // Navbar always scrolled on project pages (dark bg)
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 0);
+    });
+  </script>
+ 
 </body>
 </html>
