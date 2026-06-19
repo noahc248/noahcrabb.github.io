@@ -3,25 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noah Crabb | Engineering Portfolio</title>
-
-  <!-- Link to CSS file -->
+  <title>Noah Crabb | Aerospace Engineering</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
+ 
 <body>
-
+ 
   <!-- NAVIGATION -->
-  <header class="navbar">
+  <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo">Noah Crabb</a>
-
+      <a href="#home" class="logo">
+        <span class="logo-mark">NC</span>
+        <span class="logo-text">Noah Crabb</span>
+      </a>
       <nav class="nav-links">
         <a href="#about">About</a>
         <a href="#education">Education</a>
@@ -30,367 +27,455 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
+      <a href="Noah_Crabb_Resume.pdf" class="nav-cta" target="_blank">Resume ↗</a>
     </div>
   </header>
-
- <section id="home" class="hero">
-  <div class="hero-content">
-    <p class="eyebrow">Aerospace & Ocean Engineering Student</p>
-
-    <h1>Hi, I'm Noah Crabb.</h1>
-
-    <p class="hero-subtitle">
-      I am an Aerospace & Ocean Engineering student at Virginia Tech with
-      experience in CAD, aircraft design, 3D printed aircraft development, and MATLAB
-      analysis.
-    </p>
-    
-    <div class="hero-buttons">
-      <a href="#projects" class="btn primary-btn">View My Projects</a>
-      <a href="Noah_Crabb_Resume.pdf" class="btn secondary-btn" target="_blank">Download Resume</a>
+ 
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <!-- Background grid -->
+    <div class="hero-grid-overlay"></div>
+    <!-- Ambient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+ 
+    <div class="hero-inner">
+ 
+      <!-- Left column: text -->
+      <div class="hero-text" data-reveal>
+        <div class="eyebrow-wrap">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow">Aerospace &amp; Ocean Engineering — Virginia Tech</span>
+        </div>
+        <h1 class="hero-name">Noah<br>Crabb<span class="period">.</span></h1>
+        <p class="hero-desc">
+          Engineering student specializing in aircraft design, propulsion systems, and CAD development.
+          CAD Lead at Virginia Tech 3DPAC — building things that fly.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#contact" class="btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+ 
+      <!-- Center column: photo + HUD ring -->
+      <div class="hero-photo-col" data-reveal data-delay="100">
+        <div class="hud-ring-wrap">
+          <svg class="hud-ring" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="170" cy="170" r="162" stroke="#f97316" stroke-width="1" stroke-dasharray="4 8" opacity="0.35"/>
+            <!-- Mid ring -->
+            <circle cx="170" cy="170" r="145" stroke="#f97316" stroke-width="1.5" opacity="0.12"/>
+            <!-- Animated arc -->
+            <circle cx="170" cy="170" r="162" stroke="#f97316" stroke-width="2"
+              stroke-dasharray="180 840" stroke-linecap="round" class="hud-arc"/>
+            <!-- Cross hairs -->
+            <line x1="170" y1="8" x2="170" y2="35" stroke="#f97316" stroke-width="1" opacity="0.5"/>
+            <line x1="170" y1="305" x2="170" y2="332" stroke="#f97316" stroke-width="1" opacity="0.5"/>
+            <line x1="8" y1="170" x2="35" y2="170" stroke="#f97316" stroke-width="1" opacity="0.5"/>
+            <line x1="305" y1="170" x2="332" y2="170" stroke="#f97316" stroke-width="1" opacity="0.5"/>
+            <!-- Corner marks -->
+            <path d="M52 52 L64 52 L64 64" stroke="#f97316" stroke-width="1.5" opacity="0.6"/>
+            <path d="M288 52 L276 52 L276 64" stroke="#f97316" stroke-width="1.5" opacity="0.6"/>
+            <path d="M52 288 L64 288 L64 276" stroke="#f97316" stroke-width="1.5" opacity="0.6"/>
+            <path d="M288 288 L276 288 L276 276" stroke="#f97316" stroke-width="1.5" opacity="0.6"/>
+          </svg>
+          <div class="hero-photo-frame">
+            <img src="./headshot.jpg" alt="Noah Crabb" class="hero-photo">
+          </div>
+          <!-- HUD labels -->
+          <div class="hud-label hud-top">VT AOE — BS/MS TRACK</div>
+          <div class="hud-label hud-bottom">GPA 3.71 · BLACKSBURG VA</div>
+        </div>
+      </div>
+ 
+      <!-- Right column: stat cards -->
+      <div class="hero-stats" data-reveal data-delay="200">
+        <div class="stat-card">
+          <div class="stat-icon">✦</div>
+          <div class="stat-value">3.71</div>
+          <div class="stat-label">GPA — President's List</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">◆</div>
+          <div class="stat-value">#1</div>
+          <div class="stat-label">Most Innovative Design Award</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">▲</div>
+          <div class="stat-value">BS+MS</div>
+          <div class="stat-label">4-Year Accelerated Track</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⬡</div>
+          <div class="stat-value">CAD</div>
+          <div class="stat-label">Lead — 3DPAC Team</div>
+        </div>
+      </div>
+ 
     </div>
-  </div>
-
-  <div class="hero-side">
-    <div class="hero-photo-wrapper">
-      <img src="./headshot.jpg" alt="Photo of Noah Crabb" class="hero-photo">
+ 
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
-
-    <div class="hero-card">
-      <h3>Portfolio Highlights</h3>
-      <ul>
-        <li>CAD Lead for Virginia Tech 3DPAC</li>
-        <li>BS/MS Aerospace & Ocean Engineering Student</li>
-        <li>Experience with MATLAB, Python, Fusion 360, and SOLIDWORKS</li>
-        <li>Projects in aircraft design, AI optimization, and aerodynamic analysis</li>
-      </ul>
-    </div>
-  </div>
-</section>
-  <!-- ABOUT SECTION -->
+  </section>
+ 
+  <!-- ABOUT -->
   <section id="about" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">About Me</p>
-      <h2>Engineering, design, and problem solving.</h2>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          I am passionate about aerospace engineering, aircraft design, propulsion, and technical problem solving.
-          My work combines hands-on design experience with analytical tools such as MATLAB, Python, CAD software,
-          and simulation-based engineering.
-        </p>
-
-        <p>
-          Through my academic projects and involvement with Virginia Tech's 3D Printed Aircraft Competition team,
-          I have developed experience in CAD modeling, prototype development, aerodynamic analysis, and team-based
-          engineering design.
-        </p>
-
-        <p>
-          This portfolio highlights my technical projects, leadership experience, coursework, and engineering
-          interests as I continue building skills in aerospace systems, aircraft structures, propulsion, and
-          computational analysis.
-        </p>
-      </div>
-
-      <div class="quick-facts">
-        <h3>Quick Facts</h3>
-        <div class="fact-item">
-          <span>School</span>
-          <strong>Virginia Tech</strong>
+    <div class="container">
+      <div class="section-label" data-reveal>About</div>
+      <div class="about-layout">
+        <div class="about-heading" data-reveal>
+          <h2>Engineering,<br>design, and<br>problem solving.</h2>
         </div>
-        <div class="fact-item">
-          <span>Major</span>
-          <strong>Aerospace & Ocean Engineering</strong>
+        <div class="about-body" data-reveal data-delay="100">
+          <p>
+            I'm passionate about aerospace engineering, aircraft design, propulsion, and technical
+            problem solving. My work combines hands-on design experience with analytical tools
+            like MATLAB, Python, CAD software, and simulation-based engineering.
+          </p>
+          <p>
+            Through academic projects and Virginia Tech's 3D Printed Aircraft Competition team,
+            I've developed experience in CAD modeling, prototype development, aerodynamic analysis,
+            and team-based engineering design — culminating in a national 1st Place award for
+            Most Innovative Design.
+          </p>
+          <div class="about-tags">
+            <span>Aircraft Design</span>
+            <span>Propulsion</span>
+            <span>CAD / SOLIDWORKS</span>
+            <span>MATLAB</span>
+            <span>Aerodynamics</span>
+            <span>Rapid Prototyping</span>
+          </div>
         </div>
-        <div class="fact-item">
-          <span>Expected Graduation</span>
-          <strong>BS 2027 / MS 2028</strong>
-        </div>
-        <div class="fact-item">
-          <span>Current Interest Areas</span>
-          <strong>CAD, Aircraft Design, Propulsion, AI Tools</strong>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION SECTION -->
-  <section id="education" class="section alt-section">
-    <div class="section-heading">
-      <p class="eyebrow">Education</p>
-      <h2>Academic Background</h2>
-    </div>
-
-    <div class="card">
-      <h3>Virginia Tech</h3>
-      <p class="card-subtitle">Bachelor's / Master's Track in Aerospace & Ocean Engineering</p>
-
-      <div class="info-grid">
-        <div>
-          <h4>Degree</h4>
-          <p>B.S. Aerospace & Ocean Engineering, expected May 2027</p>
-          <p>M.S. Aerospace & Ocean Engineering, expected May 2028</p>
-        </div>
-
-        <div>
-          <h4>GPA & Honors</h4>
-          <p>GPA: 3.71 / 4.00</p>
-          <p>President's List, Fall 2024</p>
-          <p>Dean's List, Spring 2025</p>
-        </div>
-
-        <div>
-          <h4>Relevant Coursework</h4>
-          <p>Aerodynamics, Thermodynamics, Propulsion, MATLAB Programming, Engineering Design, Structures, Fluid Mechanics</p>
+        <div class="quick-facts-col" data-reveal data-delay="150">
+          <div class="qf-block">
+            <div class="qf-label">School</div>
+            <div class="qf-value">Virginia Tech</div>
+          </div>
+          <div class="qf-block">
+            <div class="qf-label">Major</div>
+            <div class="qf-value">Aerospace &amp; Ocean Engineering</div>
+          </div>
+          <div class="qf-block">
+            <div class="qf-label">Expected Graduation</div>
+            <div class="qf-value">BS 2027 · MS 2028</div>
+          </div>
+          <div class="qf-block">
+            <div class="qf-label">Focus Areas</div>
+            <div class="qf-value">CAD · Aircraft Design · Propulsion · AI Tools</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- EXPERIENCE SECTION -->
+ 
+  <!-- EDUCATION -->
+  <section id="education" class="section section-dark">
+    <div class="container">
+      <div class="section-label light" data-reveal>Education</div>
+      <div class="edu-layout" data-reveal>
+        <div class="edu-left">
+          <h2>Virginia<br>Tech</h2>
+          <p class="edu-sub">College of Engineering · Blacksburg, VA</p>
+        </div>
+        <div class="edu-right">
+          <div class="edu-degree">
+            <div class="edu-degree-head">
+              <span class="degree-badge">B.S.</span>
+              <div>
+                <div class="degree-title">Aerospace &amp; Ocean Engineering</div>
+                <div class="degree-date">Expected May 2027</div>
+              </div>
+            </div>
+          </div>
+          <div class="edu-degree">
+            <div class="edu-degree-head">
+              <span class="degree-badge ms">M.S.</span>
+              <div>
+                <div class="degree-title">Aerospace &amp; Ocean Engineering</div>
+                <div class="degree-date">Expected May 2028</div>
+              </div>
+            </div>
+          </div>
+          <div class="edu-honors">
+            <div class="honor-pill">GPA 3.71 / 4.00</div>
+            <div class="honor-pill">President's List — Fall 2024</div>
+            <div class="honor-pill">Dean's List — Spring 2025</div>
+          </div>
+          <div class="coursework">
+            <div class="coursework-label">Relevant Coursework</div>
+            <div class="coursework-tags">
+              <span>Aerodynamics &amp; Compressibility</span>
+              <span>Aerothermodynamics &amp; Propulsion</span>
+              <span>Fluid Dynamics</span>
+              <span>Aerospace Structures</span>
+              <span>System Dynamics &amp; Control</span>
+              <span>Astromechanics</span>
+              <span>Computational Methods</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- EXPERIENCE -->
   <section id="experience" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Experience</p>
-      <h2>Leadership and technical experience.</h2>
+    <div class="container">
+      <div class="section-label" data-reveal>Experience</div>
+      <h2 class="section-title" data-reveal>Leadership &amp;<br>technical work.</h2>
+ 
+      <div class="exp-list">
+ 
+        <div class="exp-item" data-reveal>
+          <div class="exp-meta">
+            <div class="exp-year">2026 — Now</div>
+            <div class="exp-type">Leadership</div>
+          </div>
+          <div class="exp-body">
+            <h3>CAD Lead</h3>
+            <p class="exp-org">Virginia Tech 3DPAC — 3D Printed Aircraft Competition</p>
+            <p>Promoted from CAD Engineer to CAD Lead, overseeing all CAD team members, delegating modeling tasks, running design reviews, leading Fall recruitment, and coordinating design standards across the full team.</p>
+            <ul>
+              <li>Lead technical CAD meetings and formal design reviews in Fusion 360 and SOLIDWORKS</li>
+              <li>Manage rapid design–build–test cycles using Creality 3D printers</li>
+              <li>Contributed to 1st Place Most Innovative Design and 2nd Place Time Aloft at UT Arlington's national competition</li>
+            </ul>
+          </div>
+        </div>
+ 
+        <div class="exp-item" data-reveal data-delay="80">
+          <div class="exp-meta">
+            <div class="exp-year">2025 — 2026</div>
+            <div class="exp-type">Engineering</div>
+          </div>
+          <div class="exp-body">
+            <h3>CAD Engineer</h3>
+            <p class="exp-org">Virginia Tech 3DPAC</p>
+            <p>One of two engineers responsible for full-aircraft CAD development. Collaborated with a multidisciplinary team on prototype development that earned national recognition.</p>
+            <ul>
+              <li>Co-developed complete competition aircraft CAD models from concept to print</li>
+              <li>Supported aircraft component design and assembly integration</li>
+            </ul>
+          </div>
+        </div>
+ 
+        <div class="exp-item" data-reveal data-delay="160">
+          <div class="exp-meta">
+            <div class="exp-year">Nov 2025 — Now</div>
+            <div class="exp-type">Professional</div>
+          </div>
+          <div class="exp-body">
+            <h3>Professional Member</h3>
+            <p class="exp-org">Pi Sigma Epsilon — Delta Epsilon Chapter, Virginia Tech</p>
+            <p>Selected as 1 of 26 members from 120+ applicants through a competitive multi-week process including interviews, case studies, and professional evaluations.</p>
+            <ul>
+              <li>Completed intensive 8-week development program focused on communication, teamwork, and business acumen</li>
+              <li>Synthesized quantitative performance and financial results into professional presentations</li>
+            </ul>
+          </div>
+        </div>
+ 
+      </div>
     </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="timeline-date">2026 - Present</div>
-        <div class="timeline-content">
-          <h3>CAD Lead — Virginia Tech 3DPAC</h3>
-          <p class="card-subtitle">3D Printed Aircraft Competition Team</p>
-          <p>
-            Lead CAD efforts for Virginia Tech's 3DPAC team, helping manage design deadlines,
-            technical meetings, design reviews, and CAD team coordination.
-          </p>
-          <ul>
-            <li>Promoted from CAD Plane Co-Lead to CAD Lead.</li>
-            <li>Oversee CAD members and support aircraft design development.</li>
-            <li>Contribute to aircraft modeling, assembly design, and prototype refinement.</li>
-            <li>Use tools including Fusion 360, SOLIDWORKS, and 3D printing workflows.</li>
-          </ul>
+  </section>
+ 
+  <!-- PROJECTS -->
+  <section id="projects" class="section section-dark">
+    <div class="container">
+      <div class="section-label light" data-reveal>Projects</div>
+      <h2 class="section-title light" data-reveal>Selected engineering<br>projects.</h2>
+ 
+      <div class="project-grid">
+ 
+        <!-- Featured -->
+        <article class="proj-card proj-featured" data-reveal>
+          <div class="proj-num">01</div>
+          <div class="proj-tag-row">
+            <span class="proj-tag">Team · CAD · Aircraft Design</span>
+            <span class="proj-award">★ 1st Place — Most Innovative</span>
+          </div>
+          <h3>Virginia Tech 3DPAC<br>Aircraft Design</h3>
+          <p>Complete 3D printed aircraft development from concept CAD to competition flight. Led full-aircraft modeling, assembly design, and rapid prototype iteration using Fusion 360 and SOLIDWORKS.</p>
+          <div class="proj-tools">
+            <span>Fusion 360</span><span>SOLIDWORKS</span><span>Creality 3D</span>
+          </div>
+          <a href="projects/3DPAC.html" class="proj-link">View Project →</a>
+        </article>
+ 
+        <!-- Turbofan -->
+        <article class="proj-card" data-reveal data-delay="80">
+          <div class="proj-num">02</div>
+          <span class="proj-tag">Machine Learning · Propulsion</span>
+          <h3>ML Turbofan Engine Performance Optimizer</h3>
+          <p>MATLAB-based optimizer using thermodynamic cycle analysis and surrogate modeling, generating 8,000 simulated engine-cycle samples to predict thrust, fuel consumption, and efficiency trends.</p>
+          <div class="proj-tools">
+            <span>MATLAB</span><span>Surrogate Modeling</span><span>GUI Design</span>
+          </div>
+          <a href="projects/turbofan_optimizer.html" class="proj-link">View Project →</a>
+        </article>
+ 
+        <!-- Wind Tunnel -->
+        <article class="proj-card" data-reveal data-delay="160">
+          <div class="proj-num">03</div>
+          <span class="proj-tag">Experimental · Aerodynamics</span>
+          <h3>Boundary Layer Wind Tunnel Analysis</h3>
+          <p>Conducted wind tunnel testing at the VT Stability Wind Tunnel, measuring turbulent boundary layer velocity profiles with a 30-port pneumatic rake across multiple Reynolds number conditions.</p>
+          <div class="proj-tools">
+            <span>MATLAB</span><span>Wind Tunnel</span><span>Boundary Layer Theory</span>
+          </div>
+          <a href="projects/wind_tunnel_analysis.html" class="proj-link">View Project →</a>
+        </article>
+ 
+        <!-- CubeSat -->
+        <article class="proj-card" data-reveal data-delay="240">
+          <div class="proj-num">04</div>
+          <span class="proj-tag">Controls · Space Systems</span>
+          <h3>CubeSat Attitude Control Simulator</h3>
+          <p>MATLAB-based attitude control simulator with interactive GUI, animated spacecraft motion, quaternion-based dynamics, PD control, and Monte Carlo analysis for pointing error evaluation.</p>
+          <div class="proj-tools">
+            <span>MATLAB</span><span>Quaternion Dynamics</span><span>Monte Carlo</span>
+          </div>
+          <a href="projects/cubesat-attitude.html" class="proj-link">View Project →</a>
+        </article>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-label" data-reveal>Skills</div>
+      <h2 class="section-title" data-reveal>Technical toolkit.</h2>
+ 
+      <div class="skills-layout" data-reveal>
+ 
+        <div class="skill-group">
+          <div class="skill-group-label">Engineering Software</div>
+          <div class="skill-list">
+            <span>SOLIDWORKS</span>
+            <span>Fusion 360</span>
+            <span>AutoCAD</span>
+            <span>Revit</span>
+            <span>XFLR5</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <div class="skill-group-label">Programming &amp; Analysis</div>
+          <div class="skill-list">
+            <span>MATLAB</span>
+            <span>Python</span>
+            <span>Excel / 365</span>
+            <span>Numerical Modeling</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <div class="skill-group-label">Aerospace Disciplines</div>
+          <div class="skill-list">
+            <span>Aerodynamics</span>
+            <span>Propulsion</span>
+            <span>Aircraft Design</span>
+            <span>Compressible Flow</span>
+            <span>Structures</span>
+            <span>Attitude Control</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <div class="skill-group-label">Design &amp; Fabrication</div>
+          <div class="skill-list">
+            <span>CAD Modeling</span>
+            <span>Aircraft Assembly Design</span>
+            <span>3D Printing</span>
+            <span>Rapid Prototyping</span>
+            <span>Wind Tunnel Testing</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <div class="skill-group-label">Leadership &amp; Comms</div>
+          <div class="skill-list">
+            <span>Team Leadership</span>
+            <span>Design Reviews</span>
+            <span>Technical Presentations</span>
+            <span>Recruitment</span>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- CONTACT -->
+  <section id="contact" class="section section-dark contact-section">
+    <div class="container">
+      <div class="contact-inner" data-reveal>
+        <div class="contact-text">
+          <div class="section-label light">Contact</div>
+          <h2>Let's build<br>something.</h2>
+          <p>Open to internship opportunities, engineering collaboration, aerospace design, and technical projects. Don't hesitate to reach out.</p>
+          <a href="Noah_Crabb_Resume.pdf" class="btn-primary" target="_blank">Download Resume ↗</a>
+        </div>
+        <div class="contact-links-col">
+          <a href="mailto:crabbnoah5@gmail.com" class="contact-link">
+            <span class="cl-label">Email</span>
+            <span class="cl-val">crabbnoah5@gmail.com</span>
+            <span class="cl-arrow">→</span>
+          </a>
+          <a href="https://www.linkedin.com/in/noah-crabb/" target="_blank" class="contact-link">
+            <span class="cl-label">LinkedIn</span>
+            <span class="cl-val">linkedin.com/in/noah-crabb</span>
+            <span class="cl-arrow">→</span>
+          </a>
+          <a href="https://github.com/noahc248" target="_blank" class="contact-link">
+            <span class="cl-label">GitHub</span>
+            <span class="cl-val">github.com/noahc248</span>
+            <span class="cl-arrow">→</span>
+          </a>
+          <a href="noahc24@vt.edu" class="contact-link">
+            <span class="cl-label">VT Email</span>
+            <span class="cl-val">noahc24@vt.edu</span>
+            <span class="cl-arrow">→</span>
+          </a>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">2025 - Present</div>
-        <div class="timeline-content">
-          <h3>3DPAC Team Member — Virginia Tech</h3>
-          <p class="card-subtitle">Aircraft Design and Prototyping</p>
-          <p>
-            Worked on 3D printed aircraft design projects focused on performance, manufacturability,
-            and competition success.
-          </p>
-          <ul>
-            <li>Supported CAD modeling and aircraft component design.</li>
-            <li>Collaborated with a multidisciplinary team on prototype development.</li>
-            <li>Contributed to a team that earned recognition at competition.</li>
-          </ul>
-        </div>
-      </div>
-
     </div>
   </section>
-
-  <!-- PROJECTS SECTION -->
-  <section id="projects" class="section alt-section">
-    <div class="section-heading">
-      <p class="eyebrow">Projects</p>
-      <h2>Selected Engineering Projects</h2>
-    </div>
-
-    <div class="project-grid">
-
-      <article class="project-card featured">
-        <div class="project-tag">Featured Team Project</div>
-        <h3>Virginia Tech 3DPAC Aircraft Design</h3>
-        <p>
-          Contributed to the design and development of 3D printed aircraft for competition.
-          Work included CAD modeling, prototype development, aircraft assembly design, and technical coordination.
-        </p>
-        <ul>
-          <li>Tools: Fusion 360, SOLIDWORKS, 3D Printing</li>
-          <li>Focus: Aircraft design, manufacturability, rapid prototyping</li>
-          <li>Role: CAD Lead / CAD Team Member</li>
-        </ul>
-        <a href="projects/3DPAC.html" class="project-link">View Project →</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-tag">Machine Learning + Propulsion</div>
-        <h3>Machine Learning Turbofan Engine Performance Optimizer</h3>
-        <p>
-          Developed a MATLAB-based tool that uses surrogate modeling and optimization to study turbofan
-          engine performance trends and improve design variable selection.
-        </p>
-        <ul>
-          <li>Built a GUI for engine cycle analysis.</li>
-          <li>Used AI-assisted optimization to evaluate performance outputs.</li>
-          <li>Explored thermal, propulsive, and overall efficiency behavior.</li>
-        </ul>
-        <a href="projects/turbofan_optimizer.html" class="project-link">View Project →</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-tag">Aerodynamics</div>
-        <h3>Boundary Layer Wind Tunnel Analysis</h3>
-        <p>
-          Analyzed wind tunnel boundary layer behavior using experimental data across multiple Reynolds numbers
-          and geometry configurations.
-        </p>
-        <ul>
-          <li>Compared no-fillet and bottom-fillet geometry cases.</li>
-          <li>Processed experimental data and evaluated flow trends.</li>
-          <li>Connected aerodynamic theory with measured results.</li>
-        </ul>
-        <a href="projects/wind_tunnel_analysis.html" class="project-link">View Project →</a>
-      </article>
-
-     <article class="project-card">
-  <div class="project-tag">Controls + Space Systems</div>
-
-  <h3>CubeSat Attitude Control Animated Simulator</h3>
-
-  <p>
-    Developed a MATLAB-based CubeSat attitude control simulator with interactive GUI controls,
-    animated spacecraft motion, and multiple simulation modes for evaluating pointing behavior
-    and control performance.
-  </p>
-
-  <ul>
-    <li>Built 1-axis and 3-axis quaternion-based attitude simulation modes</li>
-    <li>Modeled PD control, torque saturation, and external disturbance torques</li>
-    <li>Added Monte Carlo analysis to evaluate final pointing error and settling time</li>
-    <li>Created animated CubeSat visualization with plots for attitude error, body rates, and reaction wheel torques</li>
-  </ul>
-
-  <a href="projects/cubesat-attitude.html" class="project-link">View Project →</a>
-</article>
-
-    </div>
-  </section>
-
-  <!-- 3DPAC SECTION -->
-  <section id="team" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Team Involvement</p>
-      <h2>Virginia Tech 3DPAC</h2>
-    </div>
-
-    <div class="split-section">
-      <div>
-        <h3>3D Printed Aircraft Competition Team</h3>
-        <p>
-          Virginia Tech's 3DPAC team designs, builds, and tests 3D printed aircraft for competition.
-          My role focuses on CAD leadership, aircraft modeling, prototype refinement, and design coordination.
-        </p>
-
-        <p>
-          Being part of this team has helped me build technical and leadership skills in a realistic
-          engineering environment where design choices must balance performance, manufacturing, time,
-          and competition requirements.
-        </p>
-      </div>
-
-      <div class="achievement-box">
-        <h3>Team Achievements</h3>
-        <ul>
-          <li>1st Place — Most Innovative Design</li>
-          <li>2nd Place — Time Aloft</li>
-          <li>Competition experience in aircraft design and rapid prototyping</li>
-          <li>Hands-on engineering collaboration with CAD, manufacturing, and testing teams</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS SECTION -->
-  <section id="skills" class="section alt-section">
-    <div class="section-heading">
-      <p class="eyebrow">Skills</p>
-      <h2>Technical Skills</h2>
-    </div>
-
-    <div class="skills-grid">
-
-      <div class="skill-card">
-        <h3>Engineering Software</h3>
-        <p>SOLIDWORKS, Fusion 360, AutoCAD, Revit, XFLR5</p>
-      </div>
-
-      <div class="skill-card">
-        <h3>Programming & Analysis</h3>
-        <p>MATLAB, Python, Excel, data analysis, numerical modeling</p>
-      </div>
-
-      <div class="skill-card">
-        <h3>Aerospace Topics</h3>
-        <p>Aerodynamics, propulsion, aircraft design, compressible flow, structures</p>
-      </div>
-
-      <div class="skill-card">
-        <h3>Design & Prototyping</h3>
-        <p>CAD modeling, aircraft assembly design, 3D printing, rapid prototyping</p>
-      </div>
-
-      <div class="skill-card">
-        <h3>Professional Skills</h3>
-        <p>Team leadership, technical communication, design reviews, project coordination</p>
-      </div>
-
-      <div class="skill-card">
-        <h3>Tools</h3>
-        <p>Microsoft 365, GitHub, technical reports, presentations, documentation</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- RESUME SECTION -->
-  <section id="resume" class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Resume</p>
-      <h2>Resume Snapshot</h2>
-    </div>
-
-    <div class="resume-card">
-      <p>
-        My resume includes academic experience, engineering projects, CAD leadership, technical tools,
-        and team-based design work. A downloadable version can be added below.
-      </p>
-
-      <a href="Noah_Crabb_Resume.pdf" class="btn primary-btn" target="_blank">Open Resume PDF</a>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="section contact-section">
-    <div class="section-heading">
-      <p class="eyebrow">Contact</p>
-      <h2>Get in touch.</h2>
-    </div>
-
-    <p>
-      I am always interested in engineering projects, internship opportunities, aerospace design,
-      aircraft development, and technical collaboration.
-    </p>
-
-    <div class="contact-links">
-      <a href="mailto:crabbnoah5@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/noah-crabb/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/noahc248" target="_blank">GitHub</a>
-    </div>
-  </section>
-
+ 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2026 Noah Crabb. Built with HTML, CSS, and GitHub Pages.</p>
+    <div class="container footer-inner">
+      <span class="footer-name">Noah Crabb</span>
+      <span class="footer-copy">© 2026 · Aerospace &amp; Ocean Engineering · Virginia Tech · Built with HTML, CSS, GitHub Pages</span>
+    </div>
   </footer>
-
+ 
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const delay = e.target.dataset.delay || 0;
+          setTimeout(() => e.target.classList.add('revealed'), Number(delay));
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+ 
+    // Navbar scroll state
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+ 
 </body>
 </html>
