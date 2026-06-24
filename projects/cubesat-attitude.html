@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CubeSat Attitude Control Simulator | Noah Crabb</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="./project-page.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">NC</span>
+        <span class="logo-text">Noah Crabb</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../Noah_Crabb_Resume.pdf" class="nav-cta" target="_blank">Resume &rarr;</a>
+    </div>
+  </header>
+
+  <section class="proj-hero">
+    <div class="proj-hero-grid"></div>
+    <div class="proj-hero-orb"></div>
+    <div class="container proj-hero-inner">
+      <a href="../index.html#projects" class="proj-back">
+        <span class="proj-back-arrow">&larr;</span> All Projects
+      </a>
+
+      <div class="proj-hero-tag">Controls &middot; Space Systems &middot; Simulation</div>
+      <h1>CubeSat Attitude Control Simulator</h1>
+      <p class="proj-hero-sub">
+        A MATLAB-based spacecraft attitude simulator that combines quaternion kinematics, rigid-body
+        rotational dynamics, feedback control, and Monte Carlo testing in one interactive analysis tool.
+      </p>
+
+      <div class="proj-meta-row">
+        <span class="proj-meta-pill pill-tool">MATLAB</span>
+        <span class="proj-meta-pill pill-tool">Quaternion Dynamics</span>
+        <span class="proj-meta-pill pill-tool">PD Control</span>
+        <span class="proj-meta-pill pill-tool">Monte Carlo</span>
+        <span class="proj-meta-pill pill-type">Space Systems Project</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="proj-stats-bar">
+    <div class="container">
+      <div class="proj-stats-bar-inner">
+        <div class="proj-stat">
+          <div class="proj-stat-val">3-Axis</div>
+          <div class="proj-stat-label">Attitude motion modeled in full rotational space</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">PD</div>
+          <div class="proj-stat-label">Feedback control used for pointing correction</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">GUI</div>
+          <div class="proj-stat-label">Interactive user inputs and live simulation outputs</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">MC</div>
+          <div class="proj-stat-label">Monte Carlo runs used to evaluate pointing robustness</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-content">
+    <div class="container">
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Overview</div>
+        <h2>What the simulator was built to do</h2>
+        <p>
+          The project was designed to model and visualize how a CubeSat responds to attitude control
+          commands over time. Instead of treating the problem as only equations on paper, the simulator
+          turns the dynamics into something interactive and easier to study.
+        </p>
+        <p>
+          By combining state propagation, control logic, visualization, and repeated trial runs, the
+          tool becomes useful both for learning spacecraft dynamics and for comparing how different
+          controller settings affect stability and pointing performance.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Capabilities</div>
+        <h2>Main features</h2>
+        <ul class="feature-list">
+          <li data-n="01">Simulated spacecraft attitude motion using quaternion-based kinematics to avoid the singularities associated with Euler angles.</li>
+          <li data-n="02">Applied PD control to drive the spacecraft toward a desired orientation and evaluate response behavior over time.</li>
+          <li data-n="03">Included animation and interface elements so users can adjust conditions and immediately see how the vehicle responds.</li>
+          <li data-n="04">Used Monte Carlo analysis to study how initial condition variations influence control performance and pointing error trends.</li>
+        </ul>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Technical Approach</div>
+        <h2>How the model comes together</h2>
+        <div class="proj-two-col">
+          <div class="proj-two-col-block">
+            <h4>Dynamics and control</h4>
+            <p>
+              The core model propagates rotational motion while the controller continuously computes
+              corrective torques based on attitude error and angular rate. That creates a full closed-loop
+              simulation rather than a static calculation.
+            </p>
+          </div>
+          <div class="proj-two-col-block">
+            <h4>Interactive evaluation</h4>
+            <p>
+              Wrapping the analysis in a GUI makes it much easier to test assumptions, compare cases,
+              and communicate the effect of controller tuning choices without digging through multiple
+              separate scripts.
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-tag-row">
+          <span class="proj-tag-item">MATLAB</span>
+          <span class="proj-tag-item">Attitude Dynamics</span>
+          <span class="proj-tag-item">Control Systems</span>
+          <span class="proj-tag-item">Simulation</span>
+          <span class="proj-tag-item">Monte Carlo Analysis</span>
+        </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Results</div>
+        <h2>Why this project is useful</h2>
+        <p>
+          This simulator pulls together several core aerospace topics into one project: rigid-body
+          dynamics, controls, numerical modeling, and interface design. It is a good example of building
+          an engineering tool that is both technically meaningful and easy to demonstrate.
+        </p>
+        <div class="proj-callout">
+          <p>
+            If you later export screenshots, animations, or controller response plots, this page is already
+            structured to hold them cleanly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-cta">
+    <div class="container">
+      <div class="proj-cta-inner">
+        <div>
+          <div class="proj-cta-text">Space systems work fits nicely here.</div>
+          <div class="proj-cta-sub">You can drop in plots, GIFs, or a short simulator walkthrough later.</div>
+        </div>
+        <div class="proj-cta-btns">
+          <a href="../index.html#projects" class="btn-primary">Back to Projects</a>
+          <a href="../index.html#contact" class="btn-ghost">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Noah Crabb</span>
+      <span class="footer-copy">&copy; 2026 &middot; Aerospace &amp; Ocean Engineering &middot; Virginia Tech &middot; Built with HTML, CSS, GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach((element) => observer.observe(element));
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 0);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boundary Layer Wind Tunnel Analysis | Noah Crabb</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="./project-page.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">NC</span>
+        <span class="logo-text">Noah Crabb</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../Noah_Crabb_Resume.pdf" class="nav-cta" target="_blank">Resume &rarr;</a>
+    </div>
+  </header>
+
+  <section class="proj-hero">
+    <div class="proj-hero-grid"></div>
+    <div class="proj-hero-orb"></div>
+    <div class="container proj-hero-inner">
+      <a href="../index.html#projects" class="proj-back">
+        <span class="proj-back-arrow">&larr;</span> All Projects
+      </a>
+
+      <div class="proj-hero-tag">Experimental Aerodynamics &middot; Lab Testing &middot; MATLAB</div>
+      <h1>Boundary Layer Wind Tunnel Analysis</h1>
+      <p class="proj-hero-sub">
+        A wind tunnel investigation focused on turbulent boundary layer velocity profiles, using
+        multi-point pressure measurements and post-processing to compare measured flow behavior to
+        aerodynamic theory.
+      </p>
+
+      <div class="proj-meta-row">
+        <span class="proj-meta-pill pill-tool">MATLAB</span>
+        <span class="proj-meta-pill pill-tool">Wind Tunnel Testing</span>
+        <span class="proj-meta-pill pill-tool">Pressure Measurements</span>
+        <span class="proj-meta-pill pill-tool">Boundary Layer Theory</span>
+        <span class="proj-meta-pill pill-type">Virginia Tech Lab Project</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="proj-stats-bar">
+    <div class="container">
+      <div class="proj-stats-bar-inner">
+        <div class="proj-stat">
+          <div class="proj-stat-val">30</div>
+          <div class="proj-stat-label">Ports on the pneumatic rake used for profile measurements</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">VT</div>
+          <div class="proj-stat-label">Testing performed at the Virginia Tech Stability Wind Tunnel</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">Re</div>
+          <div class="proj-stat-label">Multiple Reynolds number conditions compared in post-processing</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">MATLAB</div>
+          <div class="proj-stat-label">Used for data reduction, visualization, and interpretation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-content">
+    <div class="container">
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Overview</div>
+        <h2>Purpose of the experiment</h2>
+        <p>
+          This project examined how velocity changes across a turbulent boundary layer by collecting
+          pressure data in the wind tunnel and converting it into usable flow information. The goal
+          was to connect hands-on measurements with the theory covered in aerodynamics coursework.
+        </p>
+        <p>
+          It was a strong applied exercise in experimental methods: setting up instrumentation,
+          checking data quality, processing measurements carefully, and translating raw readings into
+          physical trends that could be compared against expected boundary layer behavior.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Workflow</div>
+        <h2>From measurements to analysis</h2>
+        <ul class="feature-list">
+          <li data-n="01">Collected velocity profile data with a 30-port pneumatic rake across several operating conditions in the wind tunnel.</li>
+          <li data-n="02">Converted pressure readings into velocity information and organized the datasets for consistent comparison.</li>
+          <li data-n="03">Used MATLAB to plot profiles, normalize results, and identify trends in the turbulent boundary layer.</li>
+          <li data-n="04">Compared measured behavior to theoretical expectations to interpret profile shape, thickness growth, and flow development.</li>
+        </ul>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Technical Focus</div>
+        <h2>Key engineering takeaways</h2>
+        <div class="proj-two-col">
+          <div class="proj-two-col-block">
+            <h4>Experimental technique</h4>
+            <p>
+              The value of this project came from learning how sensitive aerodynamic measurements are
+              to setup, calibration, and data handling. Even straightforward profile measurements
+              depend on careful procedure to produce meaningful trends.
+            </p>
+          </div>
+          <div class="proj-two-col-block">
+            <h4>Data interpretation</h4>
+            <p>
+              Post-processing turned a large set of readings into something useful: profile plots,
+              condition-to-condition comparisons, and a clearer understanding of how real flow data
+              lines up with simplified theory.
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-tag-row">
+          <span class="proj-tag-item">Experimental Aerodynamics</span>
+          <span class="proj-tag-item">Boundary Layers</span>
+          <span class="proj-tag-item">MATLAB</span>
+          <span class="proj-tag-item">Lab Data Reduction</span>
+          <span class="proj-tag-item">Pressure Instrumentation</span>
+        </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Results</div>
+        <h2>What this project strengthened</h2>
+        <p>
+          This analysis helped bridge the gap between classroom aerodynamics and physical testing.
+          It improved my comfort with experimental data, uncertainty-aware thinking, and building a
+          clear analysis workflow in MATLAB for technical interpretation.
+        </p>
+        <div class="proj-callout">
+          <p>
+            This page is ready for your final plots if you want to add velocity profile figures,
+            normalized curves, or a short PDF report summary later.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-cta">
+    <div class="container">
+      <div class="proj-cta-inner">
+        <div>
+          <div class="proj-cta-text">Keep building out the detail pages.</div>
+          <div class="proj-cta-sub">This one is already structured for charts, report notes, or gallery screenshots.</div>
+        </div>
+        <div class="proj-cta-btns">
+          <a href="../index.html#projects" class="btn-primary">Back to Projects</a>
+          <a href="../index.html#contact" class="btn-ghost">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Noah Crabb</span>
+      <span class="footer-copy">&copy; 2026 &middot; Aerospace &amp; Ocean Engineering &middot; Virginia Tech &middot; Built with HTML, CSS, GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach((element) => observer.observe(element));
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 0);
+    });
+  </script>
+</body>
+</html>
