@@ -138,6 +138,21 @@
             the strong near-wall reverse-flow region seen in the LES and experimental data.
           </p>
         </div>
+        <p>
+          That mismatch shows up clearly in both the field contours and the extracted velocity profiles. The
+          baseline solution preserves the overall flow topology, but it stays too positive near the wall in the
+          separated region and does not recover the reverse-flow pocket seen in the higher-fidelity reference.
+        </p>
+        <div class="proj-img-grid">
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/rans_vs_les_ux.png" alt="NASA LES versus baseline SST-RANS field comparison" loading="lazy" />
+            <figcaption>NASA LES, baseline SST-RANS, and the corresponding streamwise-velocity error field. The dominant error sits in the downstream separated region near the lower wall.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/rans_vs_les_profiles.png" alt="Baseline RANS versus LES profile comparison" loading="lazy" />
+            <figcaption>Station-by-station profile comparison showing that baseline RANS misses the low-momentum and reverse-flow behavior that appears in LES downstream of the hump crest.</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
@@ -172,6 +187,21 @@
           full combined model. That ablation structure matters because it separates geometric interpolation from
           genuinely useful local CFD information.
         </p>
+        <p>
+          Once the residual is added back to the baseline field, the corrected solution recovers the LES-like
+          separated-flow structure much more faithfully than the original RANS field. The difference is visible
+          both in the reconstructed contour map and in the station profiles through the recovery region.
+        </p>
+        <div class="proj-img-grid">
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_corrected_field.png" alt="AI-corrected NASA hump field comparison" loading="lazy" />
+            <figcaption>LES, baseline RANS, AI-corrected RANS, and post-correction error field shown side by side. The corrected field restores the missing low-speed structure downstream of separation.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_corrected_profiles.png" alt="AI-corrected profile comparison against LES" loading="lazy" />
+            <figcaption>Profile-level comparison showing that the corrected solution follows LES much more closely than baseline RANS across the separated and recovery region.</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
@@ -194,6 +224,16 @@
           measurements at hidden stations x/C = 1.03, 1.10, and 1.17. That is a meaningful second validation
           layer because PIV was not used in AI training.
         </p>
+        <div class="proj-img-grid">
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/blocked_validation_field.png" alt="Blocked-region field validation" loading="lazy" />
+            <figcaption>Blocked-region validation map showing performance inside the continuous downstream interval removed entirely from LES training.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/blocked_validation_profiles_fixed.png" alt="Blocked-region hidden-station profiles" loading="lazy" />
+            <figcaption>Hidden-station profiles at x/C = 1.03, 1.10, and 1.17. These LES profiles were never used in training, yet the full residual model remains close to the reference curves.</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
@@ -219,6 +259,16 @@
             <p>The loss history drops by several orders of magnitude while keeping validation loss above but near training loss, which supports the blocked-region generalization claim.</p>
           </div>
         </div>
+        <div class="proj-img-grid">
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_training_loss.png" alt="Residual neural network training history" loading="lazy" />
+            <figcaption>Residual MLP training history on a logarithmic loss scale. Training and validation loss both decrease by several orders of magnitude without unstable divergence.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_vs_nasa_piv_hidden_profiles.png" alt="Independent NASA PIV validation" loading="lazy" />
+            <figcaption>Independent PIV comparison inside the held-out region. The corrected field moves substantially closer to the measured profiles and cuts RMSE from 0.445 to 0.148.</figcaption>
+          </figure>
+        </div>
         <div class="proj-callout">
           <p>
             The report's most important judgment call is also its most credible one: it explicitly says this is
@@ -229,61 +279,22 @@
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Figures</div>
-        <h2>Embedded figures from the project folder</h2>
-        <div class="proj-img-grid">
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/rans_vs_les_ux.png" alt="NASA LES versus baseline SST-RANS field comparison" loading="lazy" />
-            <figcaption>Field-level comparison showing NASA LES, the baseline SST-RANS streamwise-velocity field, and the corresponding error distribution that motivates the residual correction approach.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/rans_vs_les_profiles.png" alt="Baseline RANS versus LES profile comparison" loading="lazy" />
-            <figcaption>Velocity-profile comparison between LES and baseline RANS across multiple stations, highlighting the baseline model's inability to reproduce the downstream reverse-flow region.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_corrected_field.png" alt="AI-corrected NASA hump field comparison" loading="lazy" />
-            <figcaption>LES, baseline RANS, AI-corrected RANS, and post-correction error field shown side by side to demonstrate how the residual model reconstructs the missing separated-flow structure.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_corrected_profiles.png" alt="AI-corrected profile comparison against LES" loading="lazy" />
-            <figcaption>Profile-level comparison showing that the corrected field follows LES much more closely than the original RANS solution across the separated and recovery region.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/blocked_validation_field.png" alt="Blocked-region field validation" loading="lazy" />
-            <figcaption>Blocked-region validation figure illustrating how the model behaves inside the continuous downstream region removed from LES training.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/blocked_validation_profiles_fixed.png" alt="Blocked-region hidden-station profiles" loading="lazy" />
-            <figcaption>Hidden-station profiles at x/C = 1.03, 1.10, and 1.17, showing that the full model tracks LES closely in stations that were never seen during training.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_training_loss.png" alt="Residual neural network training history" loading="lazy" />
-            <figcaption>Residual MLP training history on a logarithmic loss scale, showing several orders of magnitude of loss reduction and stable validation behavior.</figcaption>
-          </figure>
-          <figure class="proj-img-fig">
-            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_vs_nasa_piv_hidden_profiles.png" alt="Independent NASA PIV validation" loading="lazy" />
-            <figcaption>Independent PIV validation in the AI-held-out region, where the corrected field cuts profile RMSE from 0.445 to 0.148 and better captures measured near-wall separated-flow behavior.</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="proj-section" data-reveal>
         <div class="proj-section-label">Embedded Report</div>
         <h2>Full research report</h2>
         <p>
-          The full report is embedded below so the benchmark definition, boundary reconstruction, field figures,
-          blocked-validation tables, nomenclature, and references are all directly available on the project page.
+          The full report below includes the benchmark definition, boundary reconstruction, field figures,
+          blocked-validation tables, nomenclature, and references.
         </p>
         <div class="proj-report-frame">
           <object data="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" type="application/pdf">
             <div class="proj-report-fallback">
               <p>This browser could not display the embedded PDF.</p>
-              <p><a href="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" target="_blank">Open the NASA hump report in a new tab</a>.</p>
+              <p><a href="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" target="_blank">Open the NASA hump report</a>.</p>
             </div>
           </object>
         </div>
         <p class="proj-materials-note">
-          Embedded material: full report PDF plus the complete figure set used to compare baseline RANS,
+          Included here: full report PDF plus the complete figure set used to compare baseline RANS,
           corrected predictions, blocked-region validation, training history, and independent PIV agreement.
         </p>
       </div>
@@ -295,7 +306,7 @@
       <div class="proj-cta-inner">
         <div>
           <div class="proj-cta-text">Case-specific, technically honest, and strongly validated.</div>
-          <div class="proj-cta-sub">This page now pulls the benchmark definition, CFD setup, ML method, validation design, figures, and full report directly into the portfolio.</div>
+          <div class="proj-cta-sub">The workflow combines CFD setup, residual learning, blocked-region validation, and independent PIV comparison for a separated-flow benchmark.</div>
         </div>
         <div class="proj-cta-btns">
           <a href="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" class="btn-primary" target="_blank">Open Report</a>
