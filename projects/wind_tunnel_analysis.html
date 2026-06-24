@@ -35,20 +35,25 @@
         <span class="proj-back-arrow">&larr;</span> All Projects
       </a>
 
-      <div class="proj-hero-tag">Experimental Aerodynamics &middot; Lab Testing &middot; MATLAB</div>
+      <div class="proj-hero-tag">Experimental Aerodynamics &middot; Wind Tunnel Instrumentation &middot; Report-Backed</div>
       <h1>Boundary Layer Wind Tunnel Analysis</h1>
       <p class="proj-hero-sub">
-        A wind tunnel investigation focused on turbulent boundary layer velocity profiles, using
-        multi-point pressure measurements and post-processing to compare measured flow behavior to
-        aerodynamic theory.
+        A report-driven experimental study of turbulent boundary-layer growth in the Virginia Tech Stability
+        Wind Tunnel, using a 30-port pneumatic rake to compare two sting geometries, track wall-profile growth
+        between stations, and evaluate where real wind-tunnel flow departs from ideal flat-plate scaling.
       </p>
 
       <div class="proj-meta-row">
-        <span class="proj-meta-pill pill-tool">MATLAB</span>
         <span class="proj-meta-pill pill-tool">Wind Tunnel Testing</span>
-        <span class="proj-meta-pill pill-tool">Pressure Measurements</span>
-        <span class="proj-meta-pill pill-tool">Boundary Layer Theory</span>
-        <span class="proj-meta-pill pill-type">Virginia Tech Lab Project</span>
+        <span class="proj-meta-pill pill-tool">MATLAB Data Reduction</span>
+        <span class="proj-meta-pill pill-tool">Boundary-Layer Theory</span>
+        <span class="proj-meta-pill pill-tool">Pressure Instrumentation</span>
+        <span class="proj-meta-pill pill-type">Virginia Tech Stability Wind Tunnel</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="../WInd%20Tunnel%20Boundary%20Layer%20Research%20Project/Turbulent_Boundary_Layer_Sting_Mount.pdf" class="btn-primary" target="_blank">Open Full Report</a>
+        <a href="../index.html#projects" class="btn-ghost">Back to Projects</a>
       </div>
     </div>
   </section>
@@ -58,19 +63,19 @@
       <div class="proj-stats-bar-inner">
         <div class="proj-stat">
           <div class="proj-stat-val">30</div>
-          <div class="proj-stat-label">Ports on the pneumatic rake used for profile measurements</div>
+          <div class="proj-stat-label">Stagnation-pressure ports distributed across the boundary-layer rake</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">VT</div>
-          <div class="proj-stat-label">Testing performed at the Virginia Tech Stability Wind Tunnel</div>
+          <div class="proj-stat-val">2</div>
+          <div class="proj-stat-label">Sting leading-edge geometries compared: baseline no-fillet and bottom-fillet</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">Re</div>
-          <div class="proj-stat-label">Multiple Reynolds number conditions compared in post-processing</div>
+          <div class="proj-stat-val">1.15-3.9e6</div>
+          <div class="proj-stat-label">Reynolds-number-per-meter sweep used for the profile campaign</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">MATLAB</div>
-          <div class="proj-stat-label">Used for data reduction, visualization, and interpretation</div>
+          <div class="proj-stat-val">1.22 m</div>
+          <div class="proj-stat-label">Approximate spacing used for streamwise growth-rate calculations between rake stations</div>
         </div>
       </div>
     </div>
@@ -80,75 +85,128 @@
     <div class="container">
       <div class="proj-section" data-reveal>
         <div class="proj-section-label">Overview</div>
-        <h2>Purpose of the experiment</h2>
+        <h2>What was being measured and why it mattered</h2>
         <p>
-          This project examined how velocity changes across a turbulent boundary layer by collecting
-          pressure data in the wind tunnel and converting it into usable flow information. The goal
-          was to connect hands-on measurements with the theory covered in aerodynamics coursework.
+          This experiment focused on how a support sting alters the tunnel-wall boundary layer before a full
+          model is ever mounted to it. That matters because support hardware can introduce blockage, adverse
+          pressure gradients, and horseshoe-vortex structures that contaminate the local flow seen by the actual
+          test article.
         </p>
         <p>
-          It was a strong applied exercise in experimental methods: setting up instrumentation,
-          checking data quality, processing measurements carefully, and translating raw readings into
-          physical trends that could be compared against expected boundary layer behavior.
+          The work therefore served two purposes at once: first, it produced a direct experimental comparison
+          between no-fillet and filleted sting geometries, and second, it created validation-oriented insight
+          for future CFD work by showing where simple turbulent flat-plate expectations stop matching the real
+          tunnel environment.
         </p>
+
+        <div class="proj-summary-grid">
+          <div class="proj-summary-card">
+            <h4>Facility and environment</h4>
+            <p>The testing was performed in the Virginia Tech Stability Wind Tunnel, a closed-loop subsonic facility with a 1.85 m by 1.85 m hard-wall test section.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Measurement hardware</h4>
+            <p>The 154.2 mm rake used 30 pressure ports, with fine spacing near the wall and logarithmically wider spacing farther out to capture the full profile.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Data goal</h4>
+            <p>The end product was not just a plot set; it was a quantified estimate of boundary-layer thickness, growth rate, geometry effect, and agreement with turbulent power-law scaling.</p>
+          </div>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Workflow</div>
-        <h2>From measurements to analysis</h2>
+        <div class="proj-section-label">Experimental Method</div>
+        <h2>Instrumentation, acquisition, and data reduction</h2>
+        <p>
+          The pressure rake was mounted perpendicular to the wall and connected to a DTC Initium ESP32HD
+          scanner with a reported accuracy of plus or minus 0.05% over a plus or minus 20 inWC range. At each
+          Reynolds-number condition, 25 pressure records were collected and then processed in MATLAB.
+        </p>
         <ul class="feature-list">
-          <li data-n="01">Collected velocity profile data with a 30-port pneumatic rake across several operating conditions in the wind tunnel.</li>
-          <li data-n="02">Converted pressure readings into velocity information and organized the datasets for consistent comparison.</li>
-          <li data-n="03">Used MATLAB to plot profiles, normalize results, and identify trends in the turbulent boundary layer.</li>
-          <li data-n="04">Compared measured behavior to theoretical expectations to interpret profile shape, thickness growth, and flow development.</li>
+          <li data-n="01">Total-pressure measurements from the rake and local static-pressure measurements from the panel were converted into local velocities using Bernoulli-based reduction for steady incompressible flow.</li>
+          <li data-n="02">Profiles were normalized as u/U<sub>inf</sub> versus wall-normal position y so the shape and thickness of the turbulent boundary layer could be compared cleanly across Reynolds-number conditions.</li>
+          <li data-n="03">Boundary-layer thickness was defined by interpolation to the 99% free-stream location rather than direct pointwise measurement, which is why probe spacing and local free-stream definition mattered so much to accuracy.</li>
+          <li data-n="04">The report also includes an uncertainty appendix that propagates uncertainty through local velocity, normalized velocity, and inferred thickness calculations using root-sum-square methods and perturbation-based sensitivity.</li>
         </ul>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Technical Focus</div>
-        <h2>Key engineering takeaways</h2>
+        <div class="proj-section-label">Results</div>
+        <h2>What the data showed about the sting and the boundary layer</h2>
+        <p>
+          The measured profiles showed the expected turbulent shape: low velocity at the wall, rapid near-wall
+          growth, and eventual approach to the local free stream. Across most of the sweep, higher
+          Reynolds-number conditions produced thinner boundary layers, although the highest condition showed a
+          reversal of that trend, which the report correctly treats as a sign of experimental inconsistency or
+          additional flow disturbance.
+        </p>
         <div class="proj-two-col">
           <div class="proj-two-col-block">
-            <h4>Experimental technique</h4>
+            <h4>Geometry effect</h4>
             <p>
-              The value of this project came from learning how sensitive aerodynamic measurements are
-              to setup, calibration, and data handling. Even straightforward profile measurements
-              depend on careful procedure to produce meaningful trends.
+              The fillet did not uniformly reduce thickness at every condition, but it did reduce the average
+              streamwise boundary-layer growth rate between stations from about 0.01236 to 0.01093. That is a
+              meaningful result because it suggests the fillet softened the sting-induced disturbance even when
+              thickness differences at a single station were small.
             </p>
           </div>
           <div class="proj-two-col-block">
-            <h4>Data interpretation</h4>
+            <h4>Theory comparison</h4>
             <p>
-              Post-processing turned a large set of readings into something useful: profile plots,
-              condition-to-condition comparisons, and a clearer understanding of how real flow data
-              lines up with simplified theory.
+              After calibrating a turbulent power-law model at one station, the predicted thicknesses at the
+              second station were still systematically larger than the measured values. That mismatch shows the
+              flow was not behaving like an ideal smooth flat plate and was instead being altered by sting
+              blockage, pressure-gradient effects, and likely vortex-driven distortion.
             </p>
           </div>
         </div>
-
-        <div class="proj-tag-row">
-          <span class="proj-tag-item">Experimental Aerodynamics</span>
-          <span class="proj-tag-item">Boundary Layers</span>
-          <span class="proj-tag-item">MATLAB</span>
-          <span class="proj-tag-item">Lab Data Reduction</span>
-          <span class="proj-tag-item">Pressure Instrumentation</span>
+        <div class="proj-callout">
+          <p>
+            One of the strongest parts of this project is that it does not force the data to agree with simple
+            theory. The report uses the discrepancy itself as the engineering result, which is exactly the right
+            interpretation for a disturbed experimental flowfield.
+          </p>
         </div>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Results</div>
-        <h2>What this project strengthened</h2>
+        <div class="proj-section-label">Technical Takeaways</div>
+        <h2>Why this is more than a lab write-up</h2>
         <p>
-          This analysis helped bridge the gap between classroom aerodynamics and physical testing.
-          It improved my comfort with experimental data, uncertainty-aware thinking, and building a
-          clear analysis workflow in MATLAB for technical interpretation.
+          This project demonstrates experimental aerodynamics in the full engineering sense: understanding the
+          hardware, collecting a repeatable dataset, choosing a reduction method, evaluating where a simple
+          model fails, and then turning that mismatch into something useful for later testing and CFD
+          validation.
         </p>
-        <div class="proj-callout">
-          <p>
-            This page is ready for your final plots if you want to add velocity profile figures,
-            normalized curves, or a short PDF report summary later.
-          </p>
+        <p>
+          For a recruiter, the important point is that this was not a black-box lab. It involved instrumentation
+          decisions, velocity reconstruction from pressure, profile normalization, interpolation for 99%
+          thickness, geometry-to-geometry comparison, and a theory-versus-measurement assessment rooted in the
+          actual physics of tunnel interference.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Embedded Report</div>
+        <h2>Full project report</h2>
+        <p>
+          The report below is embedded directly from the project folder so the complete apparatus discussion,
+          profile plots, tables, and uncertainty appendix are available on the page instead of being hidden
+          behind a download link.
+        </p>
+        <div class="proj-report-frame">
+          <object data="../WInd%20Tunnel%20Boundary%20Layer%20Research%20Project/Turbulent_Boundary_Layer_Sting_Mount.pdf" type="application/pdf">
+            <div class="proj-report-fallback">
+              <p>This browser could not display the embedded PDF.</p>
+              <p><a href="../WInd%20Tunnel%20Boundary%20Layer%20Research%20Project/Turbulent_Boundary_Layer_Sting_Mount.pdf" target="_blank">Open the wind tunnel report in a new tab</a>.</p>
+            </div>
+          </object>
         </div>
+        <p class="proj-materials-note">
+          Embedded material: full report with apparatus diagrams, profile plots for both sting geometries,
+          thickness tables, power-law comparison, and appendix uncertainty analysis.
+        </p>
       </div>
     </div>
   </div>
@@ -157,12 +215,12 @@
     <div class="container">
       <div class="proj-cta-inner">
         <div>
-          <div class="proj-cta-text">Keep building out the detail pages.</div>
-          <div class="proj-cta-sub">This one is already structured for charts, report notes, or gallery screenshots.</div>
+          <div class="proj-cta-text">Experimental methods, not just post-processing.</div>
+          <div class="proj-cta-sub">This page now surfaces the apparatus, reduction method, and quantified conclusions from the actual report.</div>
         </div>
         <div class="proj-cta-btns">
-          <a href="../index.html#projects" class="btn-primary">Back to Projects</a>
-          <a href="../index.html#contact" class="btn-ghost">Contact</a>
+          <a href="../WInd%20Tunnel%20Boundary%20Layer%20Research%20Project/Turbulent_Boundary_Layer_Sting_Mount.pdf" class="btn-primary" target="_blank">Open Report</a>
+          <a href="../index.html#projects" class="btn-ghost">Back to Projects</a>
         </div>
       </div>
     </div>

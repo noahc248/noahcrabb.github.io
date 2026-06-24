@@ -35,19 +35,20 @@
         <span class="proj-back-arrow">&larr;</span> All Projects
       </a>
 
-      <div class="proj-hero-tag">Controls &middot; Space Systems &middot; Simulation</div>
+      <div class="proj-hero-tag">Controls &middot; Spacecraft Dynamics &middot; MATLAB GUI</div>
       <h1>CubeSat Attitude Control Simulator</h1>
       <p class="proj-hero-sub">
-        A MATLAB-based spacecraft attitude simulator that combines quaternion kinematics, rigid-body
-        rotational dynamics, feedback control, and Monte Carlo testing in one interactive analysis tool.
+        A MATLAB simulation environment for spacecraft attitude dynamics that combines a one-axis rigid-body
+        model, a full three-axis quaternion model, interactive animation, and Monte Carlo robustness analysis
+        inside a single GUI.
       </p>
 
       <div class="proj-meta-row">
         <span class="proj-meta-pill pill-tool">MATLAB</span>
-        <span class="proj-meta-pill pill-tool">Quaternion Dynamics</span>
+        <span class="proj-meta-pill pill-tool">ode45</span>
+        <span class="proj-meta-pill pill-tool">Quaternion Kinematics</span>
         <span class="proj-meta-pill pill-tool">PD Control</span>
-        <span class="proj-meta-pill pill-tool">Monte Carlo</span>
-        <span class="proj-meta-pill pill-type">Space Systems Project</span>
+        <span class="proj-meta-pill pill-type">Controls + Simulation Project</span>
       </div>
     </div>
   </section>
@@ -56,20 +57,20 @@
     <div class="container">
       <div class="proj-stats-bar-inner">
         <div class="proj-stat">
-          <div class="proj-stat-val">3-Axis</div>
-          <div class="proj-stat-label">Attitude motion modeled in full rotational space</div>
+          <div class="proj-stat-val">3</div>
+          <div class="proj-stat-label">Simulation modes: 1-axis, 3-axis quaternion, and Monte Carlo</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">PD</div>
-          <div class="proj-stat-label">Feedback control used for pointing correction</div>
+          <div class="proj-stat-val">7-State</div>
+          <div class="proj-stat-label">Quaternion model state contains four attitude states plus three body rates</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">GUI</div>
-          <div class="proj-stat-label">Interactive user inputs and live simulation outputs</div>
+          <div class="proj-stat-val">30</div>
+          <div class="proj-stat-label">Default Monte Carlo runs with randomized Euler-angle and body-rate initial conditions</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">MC</div>
-          <div class="proj-stat-label">Monte Carlo runs used to evaluate pointing robustness</div>
+          <div class="proj-stat-val">150 s</div>
+          <div class="proj-stat-label">Default simulation horizon used for transient and settling behavior analysis</div>
         </div>
       </div>
     </div>
@@ -79,75 +80,136 @@
     <div class="container">
       <div class="proj-section" data-reveal>
         <div class="proj-section-label">Overview</div>
-        <h2>What the simulator was built to do</h2>
+        <h2>Built as a controls tool, not just a plot generator</h2>
         <p>
-          The project was designed to model and visualize how a CubeSat responds to attitude control
-          commands over time. Instead of treating the problem as only equations on paper, the simulator
-          turns the dynamics into something interactive and easier to study.
+          The core idea behind this project was to make spacecraft attitude control tangible. Rather than
+          leaving the work as disconnected scripts, the simulator organizes rigid-body dynamics, controller
+          tuning, visualization, and robustness assessment into a single interactive app that can be used both
+          for analysis and for demonstration.
         </p>
         <p>
-          By combining state propagation, control logic, visualization, and repeated trial runs, the
-          tool becomes useful both for learning spacecraft dynamics and for comparing how different
-          controller settings affect stability and pointing performance.
+          That matters because attitude-control problems are usually easier to understand when the state,
+          torque limits, transient response, and body motion are all visible at the same time. This project was
+          built around that idea: every mode exposes both the mathematics and the physical behavior of the
+          CubeSat.
         </p>
+
+        <div class="proj-summary-grid">
+          <div class="proj-summary-card">
+            <h4>1-axis mode</h4>
+            <p>Uses a simple rotational state [theta, omega] to study commanded versus saturated torque, angular-rate damping, and single-axis pointing recovery.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>3-axis mode</h4>
+            <p>Propagates a quaternion-plus-rate state, computes body torques from attitude error and rate feedback, and animates the full CubeSat body frame in 3D.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Monte Carlo mode</h4>
+            <p>Randomizes initial Euler angles and angular rates, then aggregates final pointing error and settling behavior to move from one run to controller robustness.</p>
+          </div>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Capabilities</div>
-        <h2>Main features</h2>
+        <div class="proj-section-label">Dynamics Model</div>
+        <h2>What is being integrated in each mode</h2>
+        <p>
+          The one-axis model solves a classic rigid-body attitude problem with angular position and angular
+          velocity as the state. It integrates
+          <code>thetaDot = omega</code> and
+          <code>omegaDot = (tauControl + tauDisturbance) / I</code>,
+          where the control torque is generated by a PD law and then clipped by a hard actuator limit.
+        </p>
+        <p>
+          The three-axis model moves to quaternion kinematics and Euler rigid-body dynamics. The state is
+          <code>[q0 q1 q2 q3 wx wy wz]</code>, with quaternion propagation
+          <code>qDot = 0.5 * Omega(w) * q</code> and rotational dynamics
+          <code>wDot = J^-1 (tauTotal - w x (J w))</code>. The implementation renormalizes the quaternion and
+          flips its sign when needed so the controller always uses the shortest-rotation representation.
+        </p>
         <ul class="feature-list">
-          <li data-n="01">Simulated spacecraft attitude motion using quaternion-based kinematics to avoid the singularities associated with Euler angles.</li>
-          <li data-n="02">Applied PD control to drive the spacecraft toward a desired orientation and evaluate response behavior over time.</li>
-          <li data-n="03">Included animation and interface elements so users can adjust conditions and immediately see how the vehicle responds.</li>
-          <li data-n="04">Used Monte Carlo analysis to study how initial condition variations influence control performance and pointing error trends.</li>
+          <li data-n="01">The default one-axis inertia is 0.02 kg*m^2 with a 25 degree initial angular offset and a maximum control torque of 0.001 N*m.</li>
+          <li data-n="02">The default three-axis inertia matrix is diagonal with Jx = 0.020, Jy = 0.025, and Jz = 0.015 kg*m^2, which creates axis-dependent rotational response.</li>
+          <li data-n="03">The one-axis disturbance is sinusoidal in time, while the three-axis disturbance injects time-varying body torques through a vector of sinusoidal and constant components scaled by the disturbance amplitude.</li>
+          <li data-n="04">Both modes are integrated with <code>ode45</code>, which keeps the app numerically robust while still being simple to inspect and modify.</li>
         </ul>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Technical Approach</div>
-        <h2>How the model comes together</h2>
+        <div class="proj-section-label">Control Law</div>
+        <h2>How the controller is implemented</h2>
         <div class="proj-two-col">
           <div class="proj-two-col-block">
-            <h4>Dynamics and control</h4>
+            <h4>1-axis control</h4>
             <p>
-              The core model propagates rotational motion while the controller continuously computes
-              corrective torques based on attitude error and angular rate. That creates a full closed-loop
-              simulation rather than a static calculation.
+              The one-axis controller uses a direct PD form, tau = -Kp * theta - Kd * omega, followed by
+              saturation. That makes the effect of gain tuning and actuator limits easy to interpret in the
+              angle, rate, and torque plots.
             </p>
           </div>
           <div class="proj-two-col-block">
-            <h4>Interactive evaluation</h4>
+            <h4>Quaternion control</h4>
             <p>
-              Wrapping the analysis in a GUI makes it much easier to test assumptions, compare cases,
-              and communicate the effect of controller tuning choices without digging through multiple
-              separate scripts.
+              The three-axis controller uses the vector part of the attitude quaternion together with body-rate
+              feedback. In code, tau = sat(-Kp * qVec - Kd * w, tauMax), which is simple but still captures the
+              essential structure of feedback attitude stabilization.
             </p>
           </div>
         </div>
-
-        <div class="proj-tag-row">
-          <span class="proj-tag-item">MATLAB</span>
-          <span class="proj-tag-item">Attitude Dynamics</span>
-          <span class="proj-tag-item">Control Systems</span>
-          <span class="proj-tag-item">Simulation</span>
-          <span class="proj-tag-item">Monte Carlo Analysis</span>
+        <div class="proj-callout">
+          <p>
+            A useful detail here is that the controller explicitly enforces torque saturation in both modes.
+            That means the transient plots are not idealized controller outputs; they show what happens when the
+            requested torque is larger than the actuator can deliver.
+          </p>
         </div>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Results</div>
-        <h2>Why this project is useful</h2>
+        <div class="proj-section-label">Robustness</div>
+        <h2>Monte Carlo evaluation and animation workflow</h2>
         <p>
-          This simulator pulls together several core aerospace topics into one project: rigid-body
-          dynamics, controls, numerical modeling, and interface design. It is a good example of building
-          an engineering tool that is both technically meaningful and easy to demonstrate.
+          The Monte Carlo mode randomizes roll, pitch, and yaw uniformly between -30 and 30 degrees and draws
+          initial body rates between -1 and 1 deg/s. For each run, the app propagates the quaternion model,
+          computes the attitude-error history, records final pointing error, and estimates the first time the
+          error drops below 1 degree.
         </p>
-        <div class="proj-callout">
-          <p>
-            If you later export screenshots, animations, or controller response plots, this page is already
-            structured to hold them cleanly.
-          </p>
+        <ul class="feature-list">
+          <li data-n="01">The ensemble view overlays attitude-error histories so stability across runs can be inspected directly rather than reduced immediately to a single scalar metric.</li>
+          <li data-n="02">Histograms summarize final pointing error and settling time, while a compact bar chart reports the mean final error, worst final error, and mean settling time.</li>
+          <li data-n="03">A slider-based animation timeline lets the user scrub through either the 2D or 3D motion history, which is useful for relating transient plots to actual spacecraft orientation.</li>
+          <li data-n="04">An auto-update option reruns the selected mode when parameters change, which makes the app behave more like a live design environment than a static homework script.</li>
+        </ul>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Materials</div>
+        <h2>App interface</h2>
+        <p>
+          The screenshot below is from the project folder and shows the 1-axis mode in use. Even though this
+          view is the simplest mode, the same interface also supports the full quaternion simulation and the
+          Monte Carlo workflow described above.
+        </p>
+        <div class="proj-img-grid single">
+          <figure class="proj-img-fig">
+            <img src="../CubeSat%20Attitude%20App%20Project/app_png.png" alt="CubeSat attitude control app screenshot" loading="lazy" />
+            <figcaption>The GUI combines gain and inertia inputs, time histories for angle, rate, and torque, a 2D or 3D attitude animation, and a timeline control for stepping through the motion history.</figcaption>
+          </figure>
         </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Engineering Takeaway</div>
+        <h2>What this project demonstrates</h2>
+        <p>
+          This project shows real control-simulation thinking: state definition, quaternion handling,
+          rate-feedback stabilization, actuator saturation, disturbance injection, randomized initial-condition
+          testing, and human-readable visualization all inside one tool.
+        </p>
+        <p>
+          For a recruiter, the point is that this is more than a GUI and more than a controls derivation. It is
+          a complete simulation product that turns aerospace dynamics into an interactive engineering artifact.
+        </p>
       </div>
     </div>
   </div>
@@ -156,8 +218,8 @@
     <div class="container">
       <div class="proj-cta-inner">
         <div>
-          <div class="proj-cta-text">Space systems work fits nicely here.</div>
-          <div class="proj-cta-sub">You can drop in plots, GIFs, or a short simulator walkthrough later.</div>
+          <div class="proj-cta-text">Controls, dynamics, and visualization in one app.</div>
+          <div class="proj-cta-sub">This page now reflects the actual state propagation, controller structure, and Monte Carlo logic implemented in the MATLAB file.</div>
         </div>
         <div class="proj-cta-btns">
           <a href="../index.html#projects" class="btn-primary">Back to Projects</a>

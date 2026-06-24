@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NASA Hump Residual Learning | Noah Crabb</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="./project-page.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">NC</span>
+        <span class="logo-text">Noah Crabb</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../Noah_Crabb_Resume.pdf" class="nav-cta" target="_blank">Resume &rarr;</a>
+    </div>
+  </header>
+
+  <section class="proj-hero">
+    <div class="proj-hero-grid"></div>
+    <div class="proj-hero-orb"></div>
+    <div class="container proj-hero-inner">
+      <a href="../index.html#projects" class="proj-back">
+        <span class="proj-back-arrow">&larr;</span> All Projects
+      </a>
+
+      <div class="proj-hero-tag">CFD &middot; Machine Learning &middot; NASA Benchmark</div>
+      <h1>Physics-Guided Residual Learning for the NASA Wall-Mounted Hump</h1>
+      <p class="proj-hero-sub">
+        A case-specific CFD-to-LES correction workflow for separated turbulent flow that converts a NASA
+        structured hump benchmark into OpenFOAM, runs a baseline SST-RANS solution, trains a residual neural
+        network on LES corrections, and validates the corrected field against both held-out LES data and
+        independent NASA PIV measurements.
+      </p>
+
+      <div class="proj-meta-row">
+        <span class="proj-meta-pill pill-tool">OpenFOAM</span>
+        <span class="proj-meta-pill pill-tool">Residual MLP</span>
+        <span class="proj-meta-pill pill-tool">NASA LES + PIV</span>
+        <span class="proj-meta-pill pill-tool">Separated Flow</span>
+        <span class="proj-meta-pill pill-type">AOE Research Report &middot; June 2026</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" class="btn-primary" target="_blank">Open Full Report</a>
+        <a href="../index.html#projects" class="btn-ghost">Back to Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="proj-stats-bar">
+    <div class="container">
+      <div class="proj-stats-bar-inner">
+        <div class="proj-stat">
+          <div class="proj-stat-val">44,064</div>
+          <div class="proj-stat-label">Hexahedral cells in the OpenFOAM baseline hump mesh</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">Re<sub>C</sub> 935,892</div>
+          <div class="proj-stat-label">Chord Reynolds number for the NASA wall-mounted hump benchmark</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">96.7%</div>
+          <div class="proj-stat-label">Hidden-region LES RMSE reduction achieved by the full residual model</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-val">66.7%</div>
+          <div class="proj-stat-label">Independent NASA PIV profile RMSE reduction versus baseline RANS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-content">
+    <div class="container">
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Overview</div>
+        <h2>Problem statement and project scope</h2>
+        <p>
+          The engineering question behind this project is straightforward and important: can a low-cost RANS
+          solution be corrected toward LES-like mean-flow behavior in a separated-flow region without pretending
+          that the result is a universal turbulence model? This project answers that question with a disciplined
+          case-specific workflow built around the NASA wall-mounted hump benchmark.
+        </p>
+        <p>
+          The hump case is a strong test because it includes acceleration over the hump, an adverse pressure
+          gradient downstream, and a separated reverse-flow region that standard eddy-viscosity closures often
+          struggle to predict accurately. The report is careful about scope: the final model is a benchmark-
+          specific mean-flow correction framework, not a replacement for LES or a transferable closure law.
+        </p>
+
+        <div class="proj-summary-grid">
+          <div class="proj-summary-card">
+            <h4>Reference data</h4>
+            <p>NASA LES mean-flow data supply the correction target, while independent NASA PIV profiles are held back for a separate validation step.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Baseline physics</h4>
+            <p>A steady incompressible SST-RANS solution in OpenFOAM provides the low-fidelity field that the residual model corrects rather than replaces.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Learning target</h4>
+            <p>The model predicts streamwise-velocity residuals, which preserves the baseline CFD field as a physically meaningful starting point.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">CFD Baseline</div>
+        <h2>From NASA structured grid to OpenFOAM SST-RANS</h2>
+        <p>
+          The main CFD setup began from NASA-supplied structured PLOT3D hump grids. The selected grid,
+          <code>hump2newtop_noplenumZ409x109</code>, was converted into OpenFOAM using
+          <code>plot3dToFoam</code> and reconstructed into six physical boundaries: inlet, outlet, front and
+          back symmetry planes, a slip top wall, and a no-slip lower hump wall.
+        </p>
+        <ul class="feature-list">
+          <li data-n="01">The final mesh contained 44,064 hexahedral cells with acceptable quality for preliminary RANS analysis and the expected high-aspect-ratio near-wall structure needed for boundary-layer resolution.</li>
+          <li data-n="02">The solver setup used steady incompressible SST-RANS, which was chosen because the hump case is fundamentally a separated-flow turbulence-model challenge rather than a compressibility problem.</li>
+          <li data-n="03">A uniform inlet was first used for setup verification, then replaced with an approximate turbulent one-seventh-power-law inlet profile to better reflect the incoming experimental boundary layer.</li>
+          <li data-n="04">The flow field was initialized with <code>potentialFoam</code>, advanced for 800 pseudo-iterations, exported to VTK, and then post-processed for interpolation, feature assembly, and figure generation.</li>
+        </ul>
+        <div class="proj-callout">
+          <p>
+            The key physical deficiency in the baseline was not subtle: the SST-RANS solution captured
+            acceleration over the hump and general low-momentum behavior downstream, but it failed to reproduce
+            the strong near-wall reverse-flow region seen in the LES and experimental data.
+          </p>
+        </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Residual Learning</div>
+        <h2>Learning the correction instead of the whole flow field</h2>
+        <p>
+          Rather than asking a model to infer the entire flow from geometry alone, the project learns a residual
+          on top of the RANS baseline. That is a much better formulation for this problem because the baseline
+          CFD already captures a large amount of the correct structure; the machine-learning model only needs to
+          learn the systematic error associated with separated-flow underprediction.
+        </p>
+        <div class="proj-two-col">
+          <div class="proj-two-col-block">
+            <h4>Inputs</h4>
+            <p>
+              The full model uses eight local features combining baseline RANS mean-flow information,
+              turbulence-model state information, and spatial coordinates. That feature design makes the model
+              aware of both local physics and where the sample lives within the fixed benchmark geometry.
+            </p>
+          </div>
+          <div class="proj-two-col-block">
+            <h4>Network setup</h4>
+            <p>
+              The report describes a multilayer perceptron trained on normalized inputs and normalized residual
+              targets, using SiLU activations, mean-squared-error loss, AdamW optimization, and early stopping
+              based on validation loss behavior.
+            </p>
+          </div>
+        </div>
+        <p>
+          Three model variants were compared during blocked validation: coordinates-only, RANS-only, and the
+          full combined model. That ablation structure matters because it separates geometric interpolation from
+          genuinely useful local CFD information.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Validation Design</div>
+        <h2>Why the blocked-region test is the strongest part of the workflow</h2>
+        <p>
+          A random point split would have made this problem artificially easy because training and test samples
+          would sit beside each other inside the same smooth field. Instead, the project withholds a continuous
+          downstream separated-flow region from LES training and evaluates the model only inside that hidden
+          block.
+        </p>
+        <ul class="feature-list">
+          <li data-n="01">Baseline hidden-region RMSE versus LES was 0.4253 for SST-RANS.</li>
+          <li data-n="02">A coordinates-only model reduced hidden-region RMSE to 0.0908, a 78.7% improvement.</li>
+          <li data-n="03">A RANS-only model reduced hidden-region RMSE to 0.1078, a 74.7% improvement.</li>
+          <li data-n="04">The full residual model reduced hidden-region RMSE to 0.0140, corresponding to a 96.7% improvement over baseline RANS.</li>
+        </ul>
+        <p>
+          The project then goes one step further and compares the corrected field against independent NASA PIV
+          measurements at hidden stations x/C = 1.03, 1.10, and 1.17. That is a meaningful second validation
+          layer because PIV was not used in AI training.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Results</div>
+        <h2>What improved and why it is credible</h2>
+        <p>
+          The corrected field recovers the LES-like low-momentum and reverse-flow behavior that baseline
+          SST-RANS misses in the separated region. At the hidden PIV stations, profile RMSE drops from 0.4451
+          for baseline RANS to 0.1484 for the AI-corrected field, which is a 66.7% improvement relative to the
+          independent experimental data.
+        </p>
+        <div class="proj-summary-grid">
+          <div class="proj-summary-card">
+            <h4>Field behavior</h4>
+            <p>The AI correction reconstructs the downstream low-speed pocket and near-wall reverse-flow structure instead of simply smoothing the baseline solution.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Profile behavior</h4>
+            <p>At hidden stations, the corrected profiles move from the overly positive RANS result toward the LES and PIV curves, especially near the wall where separation matters most.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Training behavior</h4>
+            <p>The loss history drops by several orders of magnitude while keeping validation loss above but near training loss, which supports the blocked-region generalization claim.</p>
+          </div>
+        </div>
+        <div class="proj-callout">
+          <p>
+            The report's most important judgment call is also its most credible one: it explicitly says this is
+            not a universal closure model. The work is presented as a benchmark-specific RANS-to-LES
+            mean-flow correction framework, which is exactly the right level of claim for the evidence shown.
+          </p>
+        </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Figures</div>
+        <h2>Embedded figures from the project folder</h2>
+        <div class="proj-img-grid">
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/rans_vs_les_ux.png" alt="NASA LES versus baseline SST-RANS field comparison" loading="lazy" />
+            <figcaption>Field-level comparison showing NASA LES, the baseline SST-RANS streamwise-velocity field, and the corresponding error distribution that motivates the residual correction approach.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/rans_vs_les_profiles.png" alt="Baseline RANS versus LES profile comparison" loading="lazy" />
+            <figcaption>Velocity-profile comparison between LES and baseline RANS across multiple stations, highlighting the baseline model's inability to reproduce the downstream reverse-flow region.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_corrected_field.png" alt="AI-corrected NASA hump field comparison" loading="lazy" />
+            <figcaption>LES, baseline RANS, AI-corrected RANS, and post-correction error field shown side by side to demonstrate how the residual model reconstructs the missing separated-flow structure.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_corrected_profiles.png" alt="AI-corrected profile comparison against LES" loading="lazy" />
+            <figcaption>Profile-level comparison showing that the corrected field follows LES much more closely than the original RANS solution across the separated and recovery region.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/blocked_validation_field.png" alt="Blocked-region field validation" loading="lazy" />
+            <figcaption>Blocked-region validation figure illustrating how the model behaves inside the continuous downstream region removed from LES training.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/blocked_validation_profiles_fixed.png" alt="Blocked-region hidden-station profiles" loading="lazy" />
+            <figcaption>Hidden-station profiles at x/C = 1.03, 1.10, and 1.17, showing that the full model tracks LES closely in stations that were never seen during training.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_training_loss.png" alt="Residual neural network training history" loading="lazy" />
+            <figcaption>Residual MLP training history on a logarithmic loss scale, showing several orders of magnitude of loss reduction and stable validation behavior.</figcaption>
+          </figure>
+          <figure class="proj-img-fig">
+            <img src="../Nasa%20Hump%20Residual%20Learning%20Project/ai_vs_nasa_piv_hidden_profiles.png" alt="Independent NASA PIV validation" loading="lazy" />
+            <figcaption>Independent PIV validation in the AI-held-out region, where the corrected field cuts profile RMSE from 0.445 to 0.148 and better captures measured near-wall separated-flow behavior.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Embedded Report</div>
+        <h2>Full research report</h2>
+        <p>
+          The full report is embedded below so the benchmark definition, boundary reconstruction, field figures,
+          blocked-validation tables, nomenclature, and references are all directly available on the project page.
+        </p>
+        <div class="proj-report-frame">
+          <object data="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" type="application/pdf">
+            <div class="proj-report-fallback">
+              <p>This browser could not display the embedded PDF.</p>
+              <p><a href="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" target="_blank">Open the NASA hump report in a new tab</a>.</p>
+            </div>
+          </object>
+        </div>
+        <p class="proj-materials-note">
+          Embedded material: full report PDF plus the complete figure set used to compare baseline RANS,
+          corrected predictions, blocked-region validation, training history, and independent PIV agreement.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-cta">
+    <div class="container">
+      <div class="proj-cta-inner">
+        <div>
+          <div class="proj-cta-text">Case-specific, technically honest, and strongly validated.</div>
+          <div class="proj-cta-sub">This page now pulls the benchmark definition, CFD setup, ML method, validation design, figures, and full report directly into the portfolio.</div>
+        </div>
+        <div class="proj-cta-btns">
+          <a href="../Nasa%20Hump%20Residual%20Learning%20Project/Noah_Crabb_NASA_Hump_Residual_Learning_Report.pdf" class="btn-primary" target="_blank">Open Report</a>
+          <a href="../index.html#projects" class="btn-ghost">Back to Projects</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Noah Crabb</span>
+      <span class="footer-copy">&copy; 2026 &middot; Aerospace &amp; Ocean Engineering &middot; Virginia Tech &middot; Built with HTML, CSS, GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach((element) => observer.observe(element));
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 0);
+    });
+  </script>
+</body>
+</html>
