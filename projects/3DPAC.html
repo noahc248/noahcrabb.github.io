@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Virginia Tech 3DPAC Aircraft Design | Noah Crabb</title>
+  <title>Virginia Tech 3DPAC Hokie Tail | Noah Crabb</title>
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="./project-page.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,19 +35,25 @@
         <span class="proj-back-arrow">&larr;</span> All Projects
       </a>
 
-      <div class="proj-hero-tag">Team Design &middot; CAD &middot; Competition Aircraft</div>
-      <h1>Virginia Tech 3DPAC Aircraft Design</h1>
+      <div class="proj-hero-tag">Aircraft Design &middot; Additive Manufacturing &middot; Flight Test</div>
+      <h1>Virginia Tech 3DPAC "Hokie Tail" Aircraft</h1>
       <p class="proj-hero-sub">
-        A full-aircraft design effort for the 3D Printed Aircraft Competition, focused on CAD development,
-        assembly integration, and fast design-build-test iteration for competition flight performance.
+        A full-aircraft design and build effort for the 3D Printed Aircraft Competition that combined
+        aerodynamic packaging, lightweight structural CAD, spiral-vase wing manufacturing, composite-reinforced
+        boom design, and rapid hardware iteration into a competition-ready endurance aircraft.
       </p>
 
       <div class="proj-meta-row">
         <span class="proj-meta-pill pill-tool">Fusion 360</span>
         <span class="proj-meta-pill pill-tool">SOLIDWORKS</span>
-        <span class="proj-meta-pill pill-tool">3D Printing</span>
-        <span class="proj-meta-pill pill-tool">Aircraft Integration</span>
+        <span class="proj-meta-pill pill-tool">LW-PLA + NylonX + TPU</span>
+        <span class="proj-meta-pill pill-tool">Spiral Vase Printing</span>
         <span class="proj-meta-pill pill-type">Virginia Tech 3DPAC &middot; 2025-2026</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="../3DPAC%20project/3DPAC_2026_Hokie_Tail.pdf" class="btn-primary" target="_blank">Open Full Report</a>
+        <a href="../index.html#projects" class="btn-ghost">Back to Projects</a>
       </div>
     </div>
   </section>
@@ -57,19 +63,19 @@
       <div class="proj-stats-bar-inner">
         <div class="proj-stat">
           <div class="proj-stat-val">1st</div>
-          <div class="proj-stat-label">Most Innovative Design at national competition</div>
+          <div class="proj-stat-label">Most Innovative Design at the national 3DPAC competition</div>
         </div>
         <div class="proj-stat">
           <div class="proj-stat-val">2nd</div>
           <div class="proj-stat-label">Time Aloft finish at UT Arlington</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">2</div>
-          <div class="proj-stat-label">Primary CAD engineers building the aircraft model</div>
+          <div class="proj-stat-val">30%</div>
+          <div class="proj-stat-label">Average wing-part mass reduction reported for spiral-vase LW-PLA printing</div>
         </div>
         <div class="proj-stat">
-          <div class="proj-stat-val">Rapid</div>
-          <div class="proj-stat-label">Iterative print-test cycle from concept to flight</div>
+          <div class="proj-stat-val">341 mm</div>
+          <div class="proj-stat-label">Tail-boom length carried by a hybrid circular and rectangular section</div>
         </div>
       </div>
     </div>
@@ -79,77 +85,215 @@
     <div class="container">
       <div class="proj-section" data-reveal>
         <div class="proj-section-label">Overview</div>
-        <h2>What this project covered</h2>
+        <h2>Competition aircraft built around lightweight printability and stable flight</h2>
         <p>
-          This project centered on designing and refining a competition aircraft for Virginia Tech's
-          3D Printed Aircraft Competition team. The work combined concept development, detailed CAD,
-          assembly planning, and repeated prototype improvements based on testing feedback.
+          "Hokie Tail" is a fully 3D-printed competition aircraft developed by Virginia Tech's 3DPAC team.
+          The design problem was not just to make a printable airplane, but to make one that could stay aloft,
+          survive repeated iteration, and keep its geometry aligned well enough to fly efficiently after
+          assembly. That forced every major decision to sit at the intersection of aerodynamics, structure,
+          printer capability, and field-service practicality.
         </p>
         <p>
-          My contribution focused on turning team design ideas into manufacturable geometry:
-          building clean part models, coordinating interfaces between components, and helping the
-          team move from screen to printed hardware as efficiently as possible.
+          My work on the aircraft centered on detailed CAD development and design integration across the wing,
+          fuselage, boom, and tail. The final configuration used a vase-mode main wing for aggressive weight
+          reduction, a lofted fuselage with embedded electronics access and wing support features, TPU-based
+          hinge and latch solutions, and a redesigned NylonX boom after flight testing exposed stability limits
+          in the first tail configuration.
         </p>
+
+        <div class="proj-summary-grid">
+          <div class="proj-summary-card">
+            <h4>Wing strategy</h4>
+            <p>The wing geometry was designed specifically around spiral-vase manufacturing, which meant the internal structure had to remain compatible with one continuous outer-wall toolpath.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Fuselage strategy</h4>
+            <p>The fuselage packaged propulsion, wiring, access, and wing attachment into smooth lofted geometry while preserving tight interfaces and low mass.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>Tail strategy</h4>
+            <p>Flight testing drove a boom redesign toward a larger hybrid section and NylonX construction to suppress wobble and recover control effectiveness.</p>
+          </div>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Role</div>
-        <h2>CAD, integration, and team coordination</h2>
+        <div class="proj-section-label">Wing Design</div>
+        <h2>Designing a wing that could actually be printed in spiral vase mode</h2>
+        <p>
+          The most distinctive structural decision in the aircraft was the use of spiral vase printing for the
+          main wing and winglets. That choice saves significant mass, but it also creates a hard CAD constraint:
+          internal structure cannot exist as disconnected geometry. If a feature does not tie into the continuous
+          exterior surface, it will not be produced by the printer's single-wall spiral path.
+        </p>
+        <p>
+          To solve that, the wing's internal structure was modeled as thin 0.1 mm bodies representing a diamond
+          reinforcement pattern and spar channel, then split and subtracted from the solid wing body. This
+          creates negative space while preserving a printable continuous shell. Even the intentional gaps needed
+          to maintain the toolpath were kept small enough that the print would fuse into a lightweight but still
+          coherent structure during manufacture.
+        </p>
         <ul class="feature-list">
-          <li data-n="01">Co-developed the aircraft CAD model with attention to fuselage layout, wing interfaces, and printable part breakdowns.</li>
-          <li data-n="02">Supported assembly integration so airframe components could be manufactured, joined, and adjusted without slowing down the full team.</li>
-          <li data-n="03">Worked through rapid prototype revisions in Fusion 360 and SOLIDWORKS based on test findings, print constraints, and performance goals.</li>
-          <li data-n="04">Contributed to the competition-ready design that earned 1st Place for Most Innovative Design and 2nd Place in Time Aloft.</li>
+          <li data-n="01">The full wing was partitioned into nine printable pieces: five main wing sections, two winglets, and two aileron elements.</li>
+          <li data-n="02">The five main wing sections and the winglets were intended for vase-mode printing, while the ailerons used a separate hollow 0.8 mm skin-thickness construction.</li>
+          <li data-n="03">Ailerons were connected with TPU hinges so the control-surface joint remained lightweight, compliant, and directly compatible with printed assembly channels.</li>
+          <li data-n="04">A servo recess was cut directly into one main wing section, accepting a localized overhang in exchange for tighter integration and cleaner packaging.</li>
         </ul>
+        <div class="proj-callout">
+          <p>
+            The key engineering value of the wing is not just that it is light. The geometry was deliberately
+            authored so the manufacturing method and structural concept are the same idea, rather than two
+            separate decisions fighting each other later in the build.
+          </p>
+        </div>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Process</div>
-        <h2>How the design work moved forward</h2>
+        <div class="proj-section-label">Fuselage Integration</div>
+        <h2>Lofted fuselage geometry built around propulsion, access, and load transfer</h2>
+        <p>
+          The fuselage was created using loft-based geometry driven by carefully placed sketches and offset
+          planes. That approach gave precise control over diameter transitions, internal cut features, and
+          alignment interfaces without sacrificing smooth outer surfaces. Instead of treating the fuselage as a
+          simple shell, the design assigned each segment a specific job in propulsion support, electronics
+          packaging, wing load transfer, or tail attachment.
+        </p>
+        <ul class="feature-list">
+          <li data-n="01">The nose cone included a 1 inch tip fillet, four 5 mm motor-mount holes, a 10 mm central shaft opening, and a 13 mm solid depth to resist thrust loads and screw pull-through.</li>
+          <li data-n="02">The electronics bay maintained a constant 32 mm diameter over a 215 mm length with 0.8 mm walls, plus a top escape hatch retained by printed TPU bands instead of heavier secondary hardware.</li>
+          <li data-n="03">The wing-cutout section held the same 32 mm diameter over 173 mm and was modeled with essentially no clearance so the wing-fuselage interface stayed tight and shear loads could be shared through the wing bed.</li>
+          <li data-n="04">The aft cone lofted from 32 mm down to 12.77 mm over 40 mm, then transitioned into a keyed boom interface to prevent rotation and preserve tail alignment.</li>
+        </ul>
+        <p>
+          Wiring paths were integrated through the nose, electronics bay, wing section, and aft fuselage so the
+          receiver, ESC, servos, and battery could be packaged internally without cluttering the external flow or
+          creating fragile ad hoc routing during final assembly.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Tail Architecture</div>
+        <h2>Boom and stabilizer design driven by stiffness, print quality, and controllability</h2>
+        <p>
+          The boom was one of the most important structural members in the aircraft because it had to carry a
+          long moment arm without allowing the tail to wobble under aerodynamic load. The final boom used a
+          12.77 mm diameter circular tube with 2 mm walls and an internal 10 mm by 4 mm rectangular hollow
+          box section, combining torsional stiffness from the outer circular shell with extra resistance to
+          horizontal bending from the internal core.
+        </p>
         <div class="proj-two-col">
           <div class="proj-two-col-block">
-            <h4>Digital design workflow</h4>
+            <h4>Tail surfaces</h4>
             <p>
-              CAD work emphasized part organization, clean geometry, and practical interfaces so the
-              aircraft could be revised quickly as competition priorities evolved. That meant modeling
-              with downstream printing, fit-up, and assembly changes in mind from the start.
+              The horizontal and vertical stabilizers were ultimately modeled as flat 3 mm thick plates because
+              a more traditional thin tail airfoil printed too weakly and warped near the trailing edges. A sweep
+              along guide rails replaced a loft-based workflow, which made iteration faster and preserved a
+              constant printable thickness across the parts.
             </p>
           </div>
           <div class="proj-two-col-block">
-            <h4>Build-test iteration</h4>
+            <h4>Control integration</h4>
             <p>
-              The team used a fast loop of printing, inspecting, assembling, and refining components.
-              Each round of testing informed the next round of CAD changes, helping the design become
-              more flight-ready without losing development speed.
+              Rudder and elevator motion used TPU hinges and rod-driven servos. The elevator included a central
+              gap for boom and vertical-tail clearance, and material was removed so one servo could actuate the
+              elevator cleanly while keeping both sides synchronized.
             </p>
           </div>
         </div>
-
-        <div class="proj-tag-row">
-          <span class="proj-tag-item">Aircraft Design</span>
-          <span class="proj-tag-item">Fusion 360</span>
-          <span class="proj-tag-item">SOLIDWORKS</span>
-          <span class="proj-tag-item">Assembly Design</span>
-          <span class="proj-tag-item">3D Printing</span>
-          <span class="proj-tag-item">Team Collaboration</span>
-        </div>
+        <p>
+          A dedicated servo mount was also designed to slide onto the boom, using two circular boom pass-throughs,
+          0.8 mm walls, and a thicker 3 mm base plate with 2.1 mm screw holes. That made the tail controls a
+          deliberate subsystem instead of an afterthought attached late in assembly.
+        </p>
       </div>
 
       <div class="proj-section" data-reveal>
-        <div class="proj-section-label">Results</div>
-        <h2>Why it matters</h2>
+        <div class="proj-section-label">Manufacturing</div>
+        <h2>Material and printer selection were part of the design, not a downstream choice</h2>
         <p>
-          This project was a strong example of engineering under real constraints: limited time,
-          physical manufacturing limits, team coordination, and the need to make design decisions
-          that hold up in actual flight hardware. It strengthened my CAD workflow and reinforced how
-          much good aircraft design depends on iteration, communication, and integration.
+          The aircraft was built around a mixed-material additive workflow using four Bambu Lab P1S printers,
+          two Creality K2 Plus printers, and one Creality CR-30. Different structures were assigned to different
+          machines and materials based on what each part needed structurally and what the printer could reliably
+          produce.
+        </p>
+        <div class="proj-summary-grid">
+          <div class="proj-summary-card">
+            <h4>LW-PLA airframe</h4>
+            <p>Wing, fuselage, and tail components were printed in ColorFabb lightweight PLA, with the wing taking advantage of spiral vase mode and a reported average mass reduction of about 30 percent relative to more traditional LW-PLA prints.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>NylonX boom</h4>
+            <p>The boom was printed in carbon-fiber-infused PA-12 NylonX on the K2 Plus because the heated chamber and hardened components were needed for that material and for the final stiffness target.</p>
+          </div>
+          <div class="proj-summary-card">
+            <h4>TPU functional parts</h4>
+            <p>TPU was used for both hinge lines and fuselage retention bands, giving the design compliant joints and closures without adding metal hardware or separate latch mechanisms.</p>
+          </div>
+        </div>
+        <p>
+          The spar strategy also matched the manufacturing plan. A solid PLA spar was printed as one long piece
+          on the CR-30's infinite-Z platform, then threaded through the wing during assembly alongside servo
+          wiring. Because the wing's internal vase-mode structure is directly connected to the outer skin,
+          assembly required careful routing and alignment to avoid damaging the lightweight internal geometry.
+        </p>
+        <p>
+          Control-surface refinement continued at the manufacturing level as well. Reducing TPU hinge thickness
+          from 0.8 mm to 0.3 mm improved deflection range, and taller control horns were used where longer
+          pusher-rod travel was needed before interference with the surrounding structure.
+        </p>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Iteration</div>
+        <h2>Flight testing exposed instability, and the redesign addressed the real failure mode</h2>
+        <p>
+          One of the clearest examples of engineering iteration in the project came from the tail boom. Initial
+          flight tests with a standard PLA boom showed significant wobble, which reduced aircraft stability and
+          degraded rudder and elevator effectiveness. That is exactly the kind of issue that looks acceptable in
+          a CAD assembly but becomes obvious once the airframe is carrying aerodynamic load.
+        </p>
+        <ul class="feature-list">
+          <li data-n="01">The boom diameter was increased from 8 mm to 12.77 mm to improve global stiffness.</li>
+          <li data-n="02">A rectangular internal section was added to resist horizontal bending more effectively than a simple thin tube.</li>
+          <li data-n="03">The servo mount location was shifted toward the nose to reduce the moment introduced by the tail-control hardware.</li>
+          <li data-n="04">The boom material was upgraded from standard PLA to NylonX to gain rigidity and strength while controlling mass.</li>
+        </ul>
+        <p>
+          The report identifies two central innovations in the final aircraft: the vase-mode-compatible wing
+          internal structure and the use of a boom in place of a conventional rear fuselage volume. Together,
+          those choices removed mass where the aircraft could least afford it, but they only worked because the
+          team was willing to revise the structural details after seeing how the first configuration behaved in
+          real flight testing.
         </p>
         <div class="proj-callout">
           <p>
-            This page is set up as a starter detail page, so you can easily add final renderings,
-            build photos, or competition flight images later without changing the structure.
+            One of the strongest future-looking ideas in the report is the proposed NylonX spar. The team
+            estimated that a smoother, better-fitting carbon-fiber-nylon spar could reduce both wing weight and
+            flutter further, but held off until print quality was good enough for reliable insertion through the
+            wing channel.
           </p>
         </div>
+      </div>
+
+      <div class="proj-section" data-reveal>
+        <div class="proj-section-label">Embedded Report</div>
+        <h2>Full aircraft report</h2>
+        <p>
+          The full report below documents the aircraft architecture, CAD details, material choices, printing
+          methodology, manufacturing sequence, lessons learned, and the competition configuration of Hokie Tail.
+        </p>
+        <div class="proj-report-frame">
+          <object data="../3DPAC%20project/3DPAC_2026_Hokie_Tail.pdf" type="application/pdf">
+            <div class="proj-report-fallback">
+              <p>This browser could not display the embedded PDF.</p>
+              <p><a href="../3DPAC%20project/3DPAC_2026_Hokie_Tail.pdf" target="_blank">Open the 3DPAC Hokie Tail report</a>.</p>
+            </div>
+          </object>
+        </div>
+        <p class="proj-materials-note">
+          Included here: the complete team report covering the structural layout, CAD geometry, manufacturing
+          methods, printer and material selections, and the post-test design changes that shaped the final airframe.
+        </p>
       </div>
     </div>
   </div>
@@ -158,12 +302,12 @@
     <div class="container">
       <div class="proj-cta-inner">
         <div>
-          <div class="proj-cta-text">Want to see more of the portfolio?</div>
-          <div class="proj-cta-sub">Use this page as a landing spot for photos, CAD screenshots, or competition notes.</div>
+          <div class="proj-cta-text">A competition aircraft shaped by manufacturing reality.</div>
+          <div class="proj-cta-sub">This project ties CAD, additive manufacturing, controls integration, and flight-test-driven redesign into one complete airframe.</div>
         </div>
         <div class="proj-cta-btns">
-          <a href="../index.html#projects" class="btn-primary">Back to Projects</a>
-          <a href="../index.html#contact" class="btn-ghost">Contact</a>
+          <a href="../3DPAC%20project/3DPAC_2026_Hokie_Tail.pdf" class="btn-primary" target="_blank">Open Report</a>
+          <a href="../index.html#projects" class="btn-ghost">Back to Projects</a>
         </div>
       </div>
     </div>
